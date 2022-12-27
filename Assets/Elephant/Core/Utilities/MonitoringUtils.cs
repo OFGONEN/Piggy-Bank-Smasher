@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ElephantSDK
 {
@@ -30,6 +31,18 @@ namespace ElephantSDK
         public void LogFps(double fpsValue)
         {
             _fpsSessionLog.Add(fpsValue);
+        }
+        
+        public float CalculateFps(float[] fpsBuffer)
+        {
+            float total = 0;
+
+            foreach (var v in fpsBuffer)
+            {
+                total += v;
+            }
+
+            return Mathf.Round(total / fpsBuffer.Length);
         }
 
         public void LogCurrentLevel()

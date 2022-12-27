@@ -118,8 +118,9 @@ namespace ElephantSDK
         public static event OnOpenResult onOpen;
         public static event OnRemoteConfigLoaded onRemoteConfigLoaded;
         
-        private float _nextActionTime = 0.0f;
-        private float _period = 2.0F;
+        private float[] _fpsBuffer = new float[60];
+        private float _lastUpdated;
+        private int _c = 0;
         private float _fps;
 
 
@@ -173,14 +174,17 @@ namespace ElephantSDK
 #endif
             } 
             
-            _fps = (1f / Time.unscaledDeltaTime);
-            if (float.IsInfinity(_fps) || float.IsNaN(_fps) ) return;
-
-            if (Time.time > _nextActionTime)
+            _fpsBuffer[_c] = 1.0f / Time.deltaTime;
+            _c = (_c + 1) % _fpsBuffer.Length;
+            if (Time.time - _lastUpdated >= 1)
             {
-                _nextActionTime += _period;
+                _lastUpdated = Time.time;
+                _fps = MonitoringUtils.GetInstance().CalculateFps(_fpsBuffer);
+                
+                if (float.IsInfinity(_fps) || float.IsNaN(_fps) ) return;
                 MonitoringUtils.GetInstance().LogFps(Math.Round(_fps, 1));
                 MonitoringUtils.GetInstance().LogCurrentLevel();
+                
             }
         }
 
@@ -870,11 +874,10 @@ namespace ElephantSDK
             if (_failedQueue.Count == 0) yield break;
             processFailedBatch = false;
 
-            var listCounter = _failedQueue.Count - 1;
-            
             while (_failedQueue.Count > 0)
             {
                 var counter = 0;
+                var listCounter = _failedQueue.Count - 1;
                 ElephantLog.Log("BatchPost", "start new batch ");
                 
                 while (counter < 10 && listCounter >= 0)
