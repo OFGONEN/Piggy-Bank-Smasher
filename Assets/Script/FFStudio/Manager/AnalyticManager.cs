@@ -14,6 +14,8 @@ namespace FFStudio
 		public EventListenerDelegateResponse elephantEventListener;
 		public EventListenerDelegateResponse elephantRemoteConfigListener;
 
+		public ScriptableObject[] remote_SO_array;
+
 		public SharedStringNotifier build_string;
 #endregion
 
@@ -38,6 +40,7 @@ namespace FFStudio
 			elephantRemoteConfigListener.response = ElephantRemoteConfigResponse;
 
 			LoadRemoteConfigs();
+			LoadRemoteSOConfigs();
 
 			var param = Params.New();
 			param.customData = build_string.SharedValue;
@@ -106,6 +109,19 @@ namespace FFStudio
 
 				if( value != null )
 					gameSettings.SetFieldValue( settingName, value );
+			}
+		}
+
+		void LoadRemoteSOConfigs()
+		{
+			for( var i = 0; i < remote_SO_array.Length; i++ )
+			{
+				var soEntity   = remote_SO_array[ i ];
+				var jsonEntity = soEntity as IJSONEntity;
+
+				var json = RemoteConfig.GetInstance().Get( soEntity.name, string.Empty );
+				FFLogger.Log( soEntity.name + " - Json: " + json );
+				jsonEntity.OverriteFromJSON( json );
 			}
 		}
 #endregion
