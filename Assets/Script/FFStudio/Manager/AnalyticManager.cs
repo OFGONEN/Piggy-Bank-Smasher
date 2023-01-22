@@ -9,15 +9,15 @@ namespace FFStudio
 {
 	public class AnalyticManager : MonoBehaviour
 	{
-		#region Fields
-		[Header( "Event Listeners" )]
+#region Fields
+		[ Header( "Event Listeners" ) ]
 		public EventListenerDelegateResponse elephantEventListener;
 		public EventListenerDelegateResponse elephantRemoteConfigListener;
 
 		public SharedStringNotifier build_string;
-		#endregion
+#endregion
 
-		#region UnityAPI
+#region UnityAPI
 		private void OnEnable()
 		{
 			elephantEventListener.OnEnable();
@@ -32,12 +32,11 @@ namespace FFStudio
 
 		private void Awake()
 		{
-			elephantEventListener.response = ElephantEventResponse;
-			elephantRemoteConfigListener.response = ElephantRemoteConfigResponse;
-		}
+			DontDestroyOnLoad( gameObject );
 
-		private void Start()
-		{
+			elephantEventListener.response        = ElephantEventResponse;
+			elephantRemoteConfigListener.response = ElephantRemoteConfigResponse;
+
 			LoadRemoteConfigs();
 
 			var param = Params.New();
@@ -45,11 +44,11 @@ namespace FFStudio
 			param.CustomString( build_string.SharedValue );
 
 			Elephant.Event( "build_string", 0, param );
+
 		}
+#endregion
 
-		#endregion
-
-		#region Implementation
+#region Implementation
 		void ElephantRemoteConfigResponse()
 		{
 			var configEvent = elephantRemoteConfigListener.gameEvent as ElephantConfigEvent;
@@ -109,6 +108,6 @@ namespace FFStudio
 					gameSettings.SetFieldValue( settingName, value );
 			}
 		}
-		#endregion
+#endregion
 	}
 }
