@@ -41,7 +41,7 @@ namespace FFEditor
 			Selection.SetActiveObjectWithContext( tracker, tracker );
 		}
 
-		[MenuItem( "FFShortcut/Delete Save File _F8" )]
+		[ MenuItem( "FFShortcut/Delete Save File _F8" ) ]
 		static void DeleteSaveFile()
 		{
 			if( File.Exists( Extensions.SAVE_PATH + "save.txt" ) )

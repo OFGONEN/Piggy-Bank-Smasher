@@ -15,9 +15,11 @@ namespace FFStudio
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
     
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
-        public int maxLevelCount;
-        
-        // Info: 3 groups below (coming from template project) are foldout by design: They should remain hidden.
+        public int game_level_count_max;
+        public int game_level_count_min;
+		public LevelData[] game_level_data_array;
+
+		// Info: 3 groups below (coming from template project) are foldout by design: They should remain hidden.
 		[ FoldoutGroup( "Remote Config" ) ] public bool useRemoteConfig_GameSettings;
         [ FoldoutGroup( "Remote Config" ) ] public bool useRemoteConfig_Components;
 
