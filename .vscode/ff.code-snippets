@@ -195,6 +195,11 @@
 		"body": "[ SerializeField ] UnityEvent unityEvent_$0;",
 		"description": "Shortcut for a SerializedField UnityEvent field."
 	},
+	"Array": {
+		"prefix": "arr",
+		"body": "[ SerializeField, LabelText( \"${2/(.*)/${1:/capitalize}/}$3\" ) ] $1[] $2_array;$0",
+		"description": "Shortcut for a an array declaration."
+	},
     "SharedFloatNotifier": {
 		"prefix": "sfn",
 		"body": [
