@@ -17,7 +17,7 @@ namespace FFStudio
 			{ 4, "T" }
 		};
 
-		public static string FormatBigNumberAANotation( double value )
+		public static string FormatBigNumberAANotation( double value, string format = "0.##" )
 		{
 			if( value < 1d )
 			{
@@ -41,7 +41,7 @@ namespace FFStudio
 			}
 
 			// Math.Floor(m * 100) / 100) fixes rounding errors
-			return ( System.Math.Floor( m * 100 ) / 100 ).ToString( "0.##" ) + unit;
+			return ( System.Math.Floor( m * 100 ) / 100 ).ToString( format ) + unit;
 		}
 
 		public static Vector2 ConvertToDirection( this float unsignedAngle )
