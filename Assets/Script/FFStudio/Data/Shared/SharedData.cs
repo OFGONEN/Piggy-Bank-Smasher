@@ -9,6 +9,9 @@ namespace FFStudio
     {
 #region Fields
         [ ShowInInspector ]
+#if UNITY_EDITOR
+        [ SuffixLabel( "@Suffix()" ) ]
+#endif
         public SharedDataType sharedValue;
 #endregion
 
@@ -26,6 +29,7 @@ namespace FFStudio
 
 #region Editor Only
 #if UNITY_EDITOR
+        protected virtual string Suffix() => "";
 #endif
 #endregion
     }
