@@ -83,5 +83,11 @@ namespace FFStudio
 		{
 			return Mathf.Lerp( targetFrom, targetTo, Mathf.InverseLerp( originalFrom, originalTo, value ) );
 		}
+
+		public static float HexagonWidth( float radius )
+		{
+			var diameter  = radius * 2.0f;
+			return Mathf.Sin( Mathf.PI / 3.0f ) * diameter;
+		}
 	}
 }
