@@ -192,7 +192,7 @@
 	},
     "UnityEvent": {
 		"prefix": "unev",
-		"body": "[ SerializeField ] UnityEvent unityEvent_$0;",
+		"body": "[ SerializeField, LabelText( \"${1/(.*)/${1:/capitalize}/}\" ) ] UnityEvent unityEvent_$1;",
 		"description": "Shortcut for a SerializedField UnityEvent field."
 	},
 	"Array": {
