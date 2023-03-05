@@ -106,9 +106,9 @@ namespace FFStudio
 	[ Serializable ]
 	public struct PlayerPrefs_Int
 	{
-		[ ReadOnly ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public string key;
-		[ OnValueChanged( "Save" ) ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public int value;
 		
 		public void Refresh() => value = PlayerPrefs.GetInt( key, 0 );
@@ -122,9 +122,9 @@ namespace FFStudio
 	[ Serializable ]
 	public struct PlayerPrefs_Float
 	{
-		[ ReadOnly ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public string key;
-		[ OnValueChanged( "Save" ) ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public float value;
 		
 		public void Refresh() => value = PlayerPrefs.GetFloat( key, 0.0f );
@@ -138,9 +138,9 @@ namespace FFStudio
 	[ Serializable ]
 	public struct PlayerPrefs_String
 	{
-		[ ReadOnly ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public string key;
-		[ OnValueChanged( "Save" ) ]
+		[ OnValueChanged( "Save" ), Delayed]
 		public string value;
 		
 		public void Refresh() => value = PlayerPrefs.GetString( key, "" );
