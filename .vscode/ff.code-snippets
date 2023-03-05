@@ -157,7 +157,7 @@
 		"prefix": "uvm",
 		"body": [
 			"//// CALLED BY A UNITY EVENT ////",
-			"// Info: Called by $2, on $3.",
+			"// Integration: Called by $2, on $3.",
 			"public void ${1:Method}()",
 			"{",
 			"\t$0",
