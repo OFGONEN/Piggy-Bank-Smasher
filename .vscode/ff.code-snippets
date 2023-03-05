@@ -589,10 +589,40 @@
 		],
 		"description": "FF's own System-as-Asset template."
 	},
-	
-	
-	
-	
+	"Pool": {
+		"prefix": "pool",
+		"body": [
+		"/* Created by and for usage of FF Studios (2023). */",
+		"",
+		"using UnityEngine;",
+		"using FFStudio;",
+		"",
+		"[ CreateAssetMenu( fileName = \"pool_${1/(.*)/${1:/downcase}/}\", menuName = \"FF/Data/Pool/$1\" ) ]",
+		"public class $1Pool : ComponentPool< $1$2 >",
+		"{",
+		"#region Fields",
+		"\t$0",
+		"#endregion",
+		"",
+		"#region Unity API",
+		"#endregion",
+		"",
+		"#region API",
+		"#endregion",
+		"",
+		"#region Implementation",
+		"#endregion",
+		"}",
+		],
+		"description": "FF's own Pool template."
+	},
+	"CreateAssetMenu": {
+		"prefix": "creas",
+		"body": [
+			"[ CreateAssetMenu( fileName = \"$1\", menuName = \"FF/$2/$3\" ) ]$0"
+		],
+		"description": "Creates a CreateAssetMenu attribute."
+	},
 	
 /* Other */
     "Editor Only Block": {
