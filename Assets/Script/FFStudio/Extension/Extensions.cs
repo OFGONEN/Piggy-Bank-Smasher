@@ -313,6 +313,13 @@ namespace FFStudio
 			rigidbody.useGravity  = !value;
 		}
 
+		public static void Swap<T>( ref T parameter1, ref T parameter2 )
+		{
+			T temp = parameter1;
+			parameter1 = parameter2;
+			parameter2 = temp;
+		}
+
 #if FF_OBI_IMPORTED
 		public static void MergeParticles( this Obi.ObiRope obiRope, int indexOfElementBefore, int indexOfElementOfInterest )
 		{
