@@ -148,6 +148,11 @@ namespace FFStudio
 			/* Intentionally empty, by definition. */
 		}
 
+		public static void EmptyMethod( Collider other )
+		{
+			/* Intentionally empty, by definition. */
+		}
+
 		public static TransformData GetTransformData( this Transform transform )
 		{
 			TransformData data;
