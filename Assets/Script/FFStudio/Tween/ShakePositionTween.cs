@@ -11,12 +11,13 @@ public class ShakePositionTween
 	[ SuffixLabel( "seconds" ), Min( 0 ) ] public float duration = 1;
     [ SuffixLabel( "hz"      ), Min( 0 ) ] public int vibrato = 10;
     [ Range( 0, 180 ) ] public float randomness = 90;
+	public bool snapping = false;
 	public bool fadeOut = true;
 	public Ease ease = Ease.Linear;
 
     public Tweener CreateTween( Transform transform )
     {
-        return transform.DOShakePosition( duration, strength, vibrato, randomness, fadeOut )
+        return transform.DOShakePosition( duration, strength, vibrato, randomness, snapping, fadeOut )
                         .SetEase( ease );
     }
 }
