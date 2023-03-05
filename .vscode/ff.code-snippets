@@ -544,16 +544,15 @@
     
     
     
-/* System */
+/* Asset Based */
 	"System-as-Asset": {
 		"prefix": "sys",
 		"body": [
-			"/* Created by and for usage of FF Studios (2021). */",
-			"",
 			"using UnityEngine;",
+			"using FFStudio;",
 			"",
 			"[ CreateAssetMenu( fileName = \"system_${1/(.*)/${1:/downcase}/}\", menuName = \"FF/System/$1\" ) ]",
-			"public class $1System : ${2|ScriptableObject|}",
+			"public class $1System : ${2|ScriptableObject,SharedFloatNotifier|}",
 			"{",
 			"#region Fields",
 			"#endregion",
@@ -563,20 +562,14 @@
 			"",
 			"#region API",
 			"\t//// CALLED BY A UNITY EVENT ////",
-			"\t// Info: Called by Asset Manager, on Awake().",
+			"\t// Integration: Called by Asset Manager, on Awake().",
 			"\tpublic void Initalize()",
 			"\t{",
 			"\t}",
 			"",
 			"\t//// CALLED BY A UNITY EVENT ////",
-			"\t// Info: Called by Level Manager, on level load.",
+			"\t// Integration: Called by Level Manager, on level load.",
 			"\tpublic void OnLevelLoad()",
-			"\t{",
-			"\t}",
-			"",
-			"\t//// CALLED BY A UNITY EVENT ////",
-			"\t// Info: Called by $4, on level complete.",
-			"\tpublic void OnLevelCompleted()",
 			"\t{",
 			"\t}",
 			"#endregion",
