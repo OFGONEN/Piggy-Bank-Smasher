@@ -527,13 +527,6 @@
 		],
 		"description": "FF's own FFLogger.Log( name + prompt ) method."
 	},
-	"Log( name ) (fully qualified)": {
-		"prefix": "fflogn",
-		"body": [
-			"FFStudio.FFLogger.Log( name + \": ${1:}.\", this );$0"
-		],
-		"description": "FFStudio.FFLogger.Log( name + prompt ) method."
-	},
 	"Log( name) (Warning)": {
 		"prefix": "lognwarning",
 		"body": [
