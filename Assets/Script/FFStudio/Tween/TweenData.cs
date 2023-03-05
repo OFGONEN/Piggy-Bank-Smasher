@@ -57,6 +57,27 @@ namespace FFStudio
 
 			return Tween;
 		}
+		
+        public void Pause()
+        {
+			Tween.Pause();
+		}
+		
+        public void Stop()
+        {
+			Tween.Rewind();
+		}
+		
+		public void Complete()
+		{
+			Tween?.Complete();
+		}
+		
+		[ Button() ]
+        public void Kill()
+        {
+			recycledTween.Kill();
+		}
 #endregion
 
 #region Implementation

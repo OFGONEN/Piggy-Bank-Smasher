@@ -1,15 +1,8 @@
 /* Created by and for usage of FF Studios (2021). */
 
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using DG.Tweening;
-
-#if UNITY_EDITOR
-using Shapes;
-using UnityEditor;
-#endif
 
 namespace FFStudio
 {
@@ -17,7 +10,7 @@ namespace FFStudio
 	{
 #region Fields
 	[ Title( "Setup" ) ]
-		[ InfoBox( "Transform of this GO will be used unless another one is provided.", "TransformIsNull" ) ]
+		[ InfoBox( "Transform of this GO will be used unless another one is provided.", "@transform_target == null" ) ]
 		[ SerializeField, LabelText( "Target Transform" ) ] Transform transform_target;
 
     [ Title( "Start Options" ) ]
@@ -28,20 +21,17 @@ namespace FFStudio
         public TweenData tweenData;
 
 		Transform transform_ToTween;
-		RecycledTween recycledTween = new RecycledTween();
 #endregion
 
 #region Properties
         [ ShowInInspector, ReadOnly ]
-		public bool IsPlaying => recycledTween.IsPlaying;
-		public Tween Tween    => recycledTween.Tween;
+		public bool IsPlaying => tweenData != null && tweenData.Tween != null && tweenData.Tween.IsPlaying();
+		public Tween Tween    => tweenData.Tween;
 #endregion
 
 #region Unity API
         void Awake()
         {
-			recycledTween = new RecycledTween();
-			
 			transform_ToTween = transform_target == null ? transform : transform_target;
 			tweenData.Initialize( transform_ToTween );
 		}
@@ -55,7 +45,6 @@ namespace FFStudio
         {
             if( playOnStart ) 
 				Play();
-
 		}
 #endregion
 
@@ -66,31 +55,31 @@ namespace FFStudio
         [ Button() ]
         public void Play()
         {
-			recycledTween.Recycle( tweenData.CreateTween() );
+			tweenData.CreateTween();
 		}
 
         [ Button(), EnableIf( "IsPlaying" ) ]
         public void Pause()
         {
-			Tween.Pause();
+			tweenData.Pause();
 		}
 		
         [ Button(), EnableIf( "IsPlaying" ) ]
         public void Stop()
         {
-			Tween.Rewind();
+			tweenData.Stop();
 		}
 		
         [ Button(), EnableIf( "IsPlaying" ) ]
 		public void Complete()
 		{
-			recycledTween.CompleteAndKill();
+			tweenData.Complete();
 		}
 		
 		[ Button() ]
         public void Kill()
         {
-			recycledTween.Kill();
+			tweenData.Kill();
 		}
 #endregion
 
