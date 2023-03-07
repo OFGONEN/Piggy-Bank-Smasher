@@ -34,9 +34,30 @@ public class SelectionSystem : ScriptableObject
     {
 		camera_main = ( cameraObject as Transform ).GetComponent< Camera >();
 	}
+
+    public void OnLevelStart()
+    {
+		onFingerUpdate = SelectPointOnWorld;
+	}
+
+    public void OnLevelFinished()
+    {
+		onFingerUpdate = Extensions.EmptyMethod;
+	}
 #endregion
 
 #region Implementation
+    void SelectPointOnWorld( Vector2 fingerPosition )
+    {
+		var screenPointNear = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.nearClipPlane ) );
+		var screenPointFar  = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.farClipPlane ) );
+
+		var direction = ( screenPointFar - screenPointNear ).normalized;
+		var layerMask = 1 << GameSettings.Instance.selection_layer;
+
+		RaycastHit hitInfo; // %100 hit rate
+
+	}
 #endregion
 
 #region Editor Only
