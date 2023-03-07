@@ -23,6 +23,7 @@ namespace ElephantSdkManager
         private EditorCoroutines.EditorCoroutine _editorCoroutine;
         private EditorCoroutines.EditorCoroutine _editorCoroutineSelfUpdate;
         private UnityWebRequest _downloader;
+        private UnityWebRequest _gameKitDownloader;
         private string _activity;
 
         private string _selfUpdateStatus;
@@ -35,7 +36,9 @@ namespace ElephantSdkManager
         private readonly GUILayoutOption _fieldWidth = GUILayout.Width(60);
 
         private Vector2 _scrollPos;
-
+        private GameKitManifest _gameKitManifest;
+        private bool _isGameKitRequestFailed;
+        
         [MenuItem("Elephant/Manage Core SDK")]
         public static void ShowSdkManager()
         {
@@ -342,22 +345,8 @@ namespace ElephantSdkManager
         {
             yield return null;
             _activity = "Downloading SDK version manifest...";
-            
-            string elephantSettingsPage = Application.dataPath + "/Resources/ElephantSettings.asset";
-            string gameId = "";
-            if (File.Exists(elephantSettingsPage))
-            {
-                string[] lines = File.ReadAllLines(elephantSettingsPage);
-                foreach (var line in lines)
-                {
-                    if (line.Contains("GameID"))
-                    {
-                        gameId = line.Replace("  GameID: ", "");
-                    }
-                }
-            }
-            
-            var unityWebRequest = new UnityWebRequest(ManifestSource.ManifestURL + gameId +  "&version=" + ElephantSdkManagerVersion.SDK_VERSION)
+
+            var unityWebRequest = new UnityWebRequest(ManifestSource.ManifestURL + GetGameID() +  "&version=" + ElephantSdkManagerVersion.SDK_VERSION)
             {
                 downloadHandler = new DownloadHandlerBuffer(),
                 timeout = 10,
@@ -406,6 +395,14 @@ namespace ElephantSdkManager
                         var adsSDK = _sdkList.Find(sdk => sdk.sdkName.Contains("Rollic Ads"));
                         if (!(fieldInfo is null)) adsSDK.currentVersion = fieldInfo.GetValue(null).ToString();
                     }
+                    
+                    if (type.FullName.Equals("RollicGames.Advertisements.GameKitVersion"))
+                    {
+                        var fieldInfo = type.GetField("GAMEKIT_VERSION",
+                            BindingFlags.NonPublic | BindingFlags.Static);
+                        var gameKit = _sdkList.Find(sdk => sdk.sdkName.ToLower().Contains("gamekit"));
+                        if (!(fieldInfo is null)) gameKit.currentVersion = fieldInfo.GetValue(null).ToString();
+                    }
                 }
                 _editorCoroutine = null;
                 Repaint();
@@ -425,12 +422,12 @@ namespace ElephantSdkManager
                     if (!(fieldInfo is null)) elephantSdk.currentVersion = fieldInfo.GetValue(null).ToString();
                 }
 
-                if (type.FullName.Equals("RollicGames.Advertisements.AdsSdkVersion"))
+                if (type.FullName.Equals("RollicGames.Advertisements.GameKitVersion"))
                 {
-                    var fieldInfo = type.GetField("SDK_VERSION",
+                    var fieldInfo = type.GetField("GAMEKIT_VERSION",
                         BindingFlags.NonPublic | BindingFlags.Static);
-                    var adsSDK = _sdkList.Find(sdk => sdk.sdkName.Contains("Rollic Ads"));
-                    if (!(fieldInfo is null)) adsSDK.currentVersion = fieldInfo.GetValue(null).ToString();
+                    var gameKit = _sdkList.Find(sdk => sdk.sdkName.ToLower().Contains("gamekit"));
+                    if (!(fieldInfo is null)) gameKit.currentVersion = fieldInfo.GetValue(null).ToString();
                 }
             }
             
@@ -576,8 +573,74 @@ namespace ElephantSdkManager
             yield return null;
         }
 
+        private string GetGameID()
+        {
+            string elephantSettingsPage = Application.dataPath + "/Resources/ElephantSettings.asset";
+            string gameId = "";
+            if (File.Exists(elephantSettingsPage))
+            {
+                string[] lines = File.ReadAllLines(elephantSettingsPage);
+                foreach (var line in lines)
+                {
+                    if (line.Contains("GameID"))
+                    {
+                        gameId = line.Replace("  GameID: ", "");
+                        break;
+                    }
+                }
+            }
+            return gameId;
+        }
+        
+        private IEnumerator GetGameKitIDs()
+        {
+            _isGameKitRequestFailed = false;
+            
+            _gameKitDownloader = new UnityWebRequest(ManifestSource.GameKitURL + GetGameID() + "/config")
+            {
+                downloadHandler = new DownloadHandlerBuffer(),
+                timeout = 10,
+            };
+
+            if (!string.IsNullOrEmpty(_gameKitDownloader.error))
+            {
+                _isGameKitRequestFailed = true;
+                Debug.LogError("Unable to retrieve GameKit IDs.");
+            }
+
+            yield return _gameKitDownloader.SendWebRequest();
+
+            while (!_gameKitDownloader.isDone)
+            {
+                yield return null;
+            }
+
+            var responseJson = _gameKitDownloader.downloadHandler.text;
+
+            if (string.IsNullOrEmpty(responseJson))
+            {
+                Debug.LogError("Unable to retrieve GameKit IDs.");
+                _isGameKitRequestFailed = true;
+                yield break;
+            }
+            _gameKitDownloader.Dispose();
+            _gameKitDownloader = null;
+            _gameKitManifest = JsonUtility.FromJson<GameKitManifest>(responseJson);
+
+            if (_gameKitManifest == null || _gameKitManifest.data == null || _gameKitManifest.data.appKey == null)
+            {
+                _isGameKitRequestFailed = true;
+                Debug.LogError("Unable to retrieve GameKit IDs. Please set your IDs in RollicGames/RollicApplovinIDs.cs file!");
+            }
+        }
+
         private IEnumerator DownloadSDK(Sdk sdkInfo)
         {
+            if (sdkInfo.sdkName.ToLower().Contains("gamekit"))
+            {
+                this.StartCoroutine(GetGameKitIDs());
+            }
+            
             var path = Path.Combine(DownloadDirectory, sdkInfo.sdkName + ".unitypackage");
 
             if (sdkInfo.downloadUrl.Contains("xml"))
@@ -610,17 +673,34 @@ namespace ElephantSdkManager
             {
                 if (Directory.Exists(AssetsPathPrefix + sdkInfo.sdkName))
                 {
-                    if (!string.Equals(sdkInfo.sdkName, "IronSource"))
-                    {
-                        FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + sdkInfo.sdkName);
-                    }
+                    FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + sdkInfo.sdkName);
                 }
 
-                if (sdkInfo.sdkName.Contains("Rollic Ads"))
+                if (sdkInfo.sdkName.ToLower().Contains("gamekit"))
                 {
                     if (Directory.Exists(AssetsPathPrefix + "RollicGames"))
                     {
                         FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + "RollicGames");
+                    }
+                    
+                    if (Directory.Exists(AssetsPathPrefix + "MaxSdk"))
+                    {
+                        FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + "MaxSdk");
+                    }
+                    
+                    if (Directory.Exists(AssetsPathPrefix + "IronSource"))
+                    {
+                        FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + "IronSource");
+                    }
+                    
+                    if (Directory.Exists(AssetsPathPrefix + "ExternalDependencyManager"))
+                    {
+                        FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + "ExternalDependencyManager");
+                    }
+                    
+                    if (Directory.Exists(AssetsPathPrefix + "PlayServicesResolver"))
+                    {
+                        FileUtil.DeleteFileOrDirectory(AssetsPathPrefix + "PlayServicesResolver");
                     }
                 }
 
@@ -645,6 +725,20 @@ namespace ElephantSdkManager
         private void OnImportPackageCompleted(string packageName)
         {
             CheckVersions();
+            CheckPackage(packageName);
+        }
+
+        private void CheckPackage(string packageName)
+        {
+            if (!packageName.ToLower().Contains("gamekit")) return;
+            if (_isGameKitRequestFailed)
+            {
+                EditorUtility.DisplayDialog("ERROR", "Unable to retrieve GameKit IDs. " +
+                                                     "Please set your IDs in RollicGames/RollicApplovinIDs.cs file!", "OK");
+                return;
+            }
+            
+            VersionUtils.SetupGameKitIDs(_gameKitManifest, packageName);
         }
 
         private bool IsInstallAvailable(Sdk dependentSdk)

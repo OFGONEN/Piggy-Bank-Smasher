@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using ElephantSdkManager.Model;
 using UnityEngine;
 
 namespace ElephantSdkManager.Util
@@ -14,7 +15,7 @@ namespace ElephantSdkManager.Util
         public static int CompareVersions(string a, string b)
         {
             if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b)) return 0;
-            
+
             var versionA = VersionStringToInts(a);
             var versionB = VersionStringToInts(b);
             for (var i = 0; i < Mathf.Max(versionA.Length, versionB.Length); i++)
@@ -52,6 +53,90 @@ namespace ElephantSdkManager.Util
                 .ToArray();
         }
 
+        private static string CheckMediationPackageName(string packageName)
+        {
+            if (packageName.ToLower().Contains("gamekit-is"))
+            {
+                return Application.dataPath + "/RollicGames/RollicIronSourceIDs.cs";
+            }
+
+            if (packageName.ToLower().Contains("gamekit-max"))
+            {
+                return Application.dataPath + "/RollicGames/RollicApplovinIDs.cs";
+            }
+
+            return null;
+        }
+
+        public static void SetupGameKitIDs(GameKitManifest gameKitManifest, string packageName)
+        {
+            if (gameKitManifest is null || gameKitManifest.data is null || gameKitManifest.data.appKey is null) return;
+            
+            string rollicAdsPath = CheckMediationPackageName(packageName);
+
+            if (rollicAdsPath is null) return;
+
+            string[] lines = File.ReadAllLines(rollicAdsPath);
+            File.Delete(rollicAdsPath);
+
+            using (StreamWriter sw = File.AppendText(rollicAdsPath))
+            {
+                foreach (string line in lines)
+                {
+                    string newLine = "";
+                    if (line.Contains("[TEMP_GAMEKIT_AppKey]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_AppKey]", gameKitManifest.data.appKey);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_BannerAdUnitIos]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_BannerAdUnitIos]", gameKitManifest.data.bannerAdUnitIos);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_InterstitialAdUnitIos]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_InterstitialAdUnitIos]",
+                            gameKitManifest.data.interstitialAdUnitIos);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_RewardedAdUnitIos]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_RewardedAdUnitIos]",
+                            gameKitManifest.data.rewardedAdUnitIos);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_BannerAdUnitAndroid]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_BannerAdUnitAndroid]",
+                            gameKitManifest.data.bannerAdUnitAndroid);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_InterstitialAdUnitAndroid]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_InterstitialAdUnitAndroid]",
+                            gameKitManifest.data.interstitialAdUnitAndroid);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_RewardedAdUnitAndroid]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_RewardedAdUnitAndroid]",
+                            gameKitManifest.data.rewardedAdUnitAndroid);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_GoogleAppIdIos]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_GoogleAppIdIos]",
+                            gameKitManifest.data.googleAppIdIos);
+                    }
+                    else if (line.Contains("[TEMP_GAMEKIT_GoogleAppIdAndroid]"))
+                    {
+                        newLine = line.Replace("[TEMP_GAMEKIT_GoogleAppIdAndroid]",
+                            gameKitManifest.data.googleAppIdAndroid);
+                    }
+                    else
+                    {
+                        newLine = line;
+                    }
+
+                    sw.WriteLine(newLine);
+                }
+            }
+        }
+
         #region IronSource Utils
 
         public static string GetVersionFromXML(string fileName)
@@ -66,12 +151,13 @@ namespace ElephantSdkManager.Util
             {
                 return version;
             }
+
             var unityVersion = xmlDoc.SelectSingleNode("dependencies/unityversion");
             if (unityVersion != null)
             {
                 return (unityVersion.InnerText);
             }
-            
+
             return version;
         }
 
@@ -110,9 +196,10 @@ namespace ElephantSdkManager.Util
                 var androidPackages = dependenciesElement.Element("androidPackages");
                 if (androidPackages != null)
                 {
-                    var adapterPackage = androidPackages.Descendants().FirstOrDefault(element => element.Name.LocalName.Equals("androidPackage")
-                                                                                                 && element.FirstAttribute.Name.LocalName.Equals("spec")
-                                                                                                 && element.FirstAttribute.Value.StartsWith("com.applovin"));
+                    var adapterPackage = androidPackages.Descendants().FirstOrDefault(element =>
+                        element.Name.LocalName.Equals("androidPackage")
+                        && element.FirstAttribute.Name.LocalName.Equals("spec")
+                        && element.FirstAttribute.Value.StartsWith("com.applovin"));
                     if (adapterPackage != null)
                     {
                         androidVersion = adapterPackage.FirstAttribute.Value.Split(':').Last();
@@ -127,12 +214,14 @@ namespace ElephantSdkManager.Util
                 var iosPods = dependenciesElement.Element("iosPods");
                 if (iosPods != null)
                 {
-                    var adapterPod = iosPods.Descendants().FirstOrDefault(element => element.Name.LocalName.Equals("iosPod")
-                                                                                     && element.FirstAttribute.Name.LocalName.Equals("name")
-                                                                                     && element.FirstAttribute.Value.StartsWith("AppLovin"));
+                    var adapterPod = iosPods.Descendants().FirstOrDefault(element =>
+                        element.Name.LocalName.Equals("iosPod")
+                        && element.FirstAttribute.Name.LocalName.Equals("name")
+                        && element.FirstAttribute.Value.StartsWith("AppLovin"));
                     if (adapterPod != null)
                     {
-                        iosVersion = adapterPod.Attributes().First(attribute => attribute.Name.LocalName.Equals("version")).Value;
+                        iosVersion = adapterPod.Attributes()
+                            .First(attribute => attribute.Name.LocalName.Equals("version")).Value;
                     }
                 }
             }
@@ -157,7 +246,7 @@ namespace ElephantSdkManager.Util
 
             return currentVersions;
         }
-        
+
         public class Versions
         {
             public string Unity;
@@ -183,7 +272,7 @@ namespace ElephantSdkManager.Util
 
             public override int GetHashCode()
             {
-                return new {Unity, Android, Ios}.GetHashCode();
+                return new { Unity, Android, Ios }.GetHashCode();
             }
 
             private static string AdapterSdkVersion(string adapterVersion)
