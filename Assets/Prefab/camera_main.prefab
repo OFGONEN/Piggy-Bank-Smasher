@@ -144,11 +144,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3747325266785291020, guid: ed4a75596492d5941b007d11e01ab28a, type: 3}
   m_PrefabInstance: {fileID: 8845214483687598547}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &7756946730854175824 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1253889938108595587, guid: ed4a75596492d5941b007d11e01ab28a, type: 3}
-  m_PrefabInstance: {fileID: 8845214483687598547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7996142625926839801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1457058443166520362, guid: ed4a75596492d5941b007d11e01ab28a, type: 3}
@@ -180,4 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedReferenceProperty: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
-  referenceComponent: {fileID: 7756946730854175824}
+  referenceComponent: {fileID: 9183828978397315748}
+--- !u!4 &9183828978397315748 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 410672511804074871, guid: ed4a75596492d5941b007d11e01ab28a, type: 3}
+  m_PrefabInstance: {fileID: 8845214483687598547}
+  m_PrefabAsset: {fileID: 0}
