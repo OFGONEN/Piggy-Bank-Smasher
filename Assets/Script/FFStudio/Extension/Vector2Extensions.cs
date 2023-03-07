@@ -11,6 +11,11 @@ namespace FFStudio
 			return new Vector3( v2.x, v2.y, 0 );
 		}
 
+		public static Vector3 ConvertToVector3( this Vector2 v2, float z )
+		{
+			return new Vector3( v2.x, v2.y, z );
+		}
+
 		public static Vector2 Clamp( this Vector2 value, Vector2 min, Vector2 max )
 		{
 			value.x = Mathf.Clamp( value.x, min.x, max.x );
