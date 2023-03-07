@@ -10,7 +10,9 @@ namespace FFStudio
     {
 #region Fields (Settings)
     // Info: You can use Title() attribute ONCE for every game-specific group of settings.
-    
+    [ Title( "Selection" ) ]
+        [ LabelText( "Selection Layer" ), Layer() ] public int selection_layer;
+
     [ Title( "Camera" ) ]
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
     
