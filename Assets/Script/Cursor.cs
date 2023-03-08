@@ -11,7 +11,7 @@ public class Cursor : MonoBehaviour
 #region Fields
     [ SerializeField ] Rigidbody _rigidbody;
 
-    Vector3 position_target;
+    [ ShowInInspector, ReadOnly ] Vector3 position_target;
     UnityMessage onFixedUpdate = Extensions.EmptyMethod;
 #endregion
 
@@ -41,6 +41,11 @@ public class Cursor : MonoBehaviour
     public void OnWorldPointSelect( Vector3 point )
     {
 		position_target = point;
+	}
+
+	public void TriggerEnter( Collider collider )
+	{
+		( collider.GetComponent< ComponentHost >().HostComponent as IInteractable ).OnInteract();
 	}
 #endregion
 
