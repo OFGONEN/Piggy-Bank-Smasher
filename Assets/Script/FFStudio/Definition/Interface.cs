@@ -15,4 +15,9 @@ namespace FFStudio
 		string ConvertToJSON();
 		void OverriteFromJSON( string json );
 	}
+
+	public interface IInteractable
+	{
+		void OnInteract();
+	}
 }
