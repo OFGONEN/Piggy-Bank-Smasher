@@ -28,6 +28,20 @@ public class SystemEconomy : ScriptableObject
     {
 		economy_index = PlayerPrefsUtility.Instance.GetInt( Extensions.Key_Economy, 0 );
 	}
+
+	public EconomySpawnData GetSpawnData()
+	{
+		var random = Random.Range( 0, 100 );
+
+		for( var x = 0; x < economy_data_array[ economy_index ].spawn_data_array.Length; x++ )
+		{
+			if( random <= economy_data_array[ economy_index ].spawn_data_array[ x ].percentage )
+				return economy_data_array[ economy_index ].spawn_data_array[ x ];
+		}
+
+		FFLogger.LogError( "Wrong Spawn Return" );
+		return economy_data_array[ economy_index ].spawn_data_array[ 0 ];
+	}
 #endregion
 
 #region Implementation
