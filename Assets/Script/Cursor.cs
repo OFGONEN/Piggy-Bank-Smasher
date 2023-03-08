@@ -26,9 +26,11 @@ public class Cursor : MonoBehaviour
 #endregion
 
 #region API
-    public void OnFingerDown()
+    public void OnFingerDown( Vector3 point )
     {
-		onFixedUpdate = Movement;
+		onFixedUpdate      = Movement;
+		position_target    = point;
+		transform.position = position_target;
 	}
 
     public void OnFingerUp()
