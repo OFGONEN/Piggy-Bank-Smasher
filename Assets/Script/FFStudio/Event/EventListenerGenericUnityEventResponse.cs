@@ -98,4 +98,12 @@ namespace FFStudio
 			unityEvent.Invoke( gameEvent.eventValue );
 		}
 	}
+
+	public class Vector2GameEventResponse : GenericEventListenerGenericUnityEventResponse< Vector2GameEvent, Vector2 >
+	{
+		protected override void OnEventResponse()
+		{
+			unityEvent.Invoke( gameEvent.eventValue );
+		}
+	}
 }
