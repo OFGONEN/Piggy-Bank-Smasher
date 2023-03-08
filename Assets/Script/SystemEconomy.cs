@@ -14,7 +14,10 @@ public class SystemEconomy : ScriptableObject
 #endregion
 
 #region Properties
-    public int EconomyIndex => economy_index;
+    public int Index        => economy_index;
+    public bool IsMaxed     => economy_data_array.Length - 1 == economy_index;
+    public float UnlockCost => economy_data_array[ economy_index ].unlock_cost;
+    public float Damage     => economy_data_array[ economy_index ].damage;
 #endregion
 
 #region Unity API
