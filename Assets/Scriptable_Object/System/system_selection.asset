@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed75cdb370ff748fe90dbc558d1f8c1c, type: 3}
   m_Name: system_selection
   m_EditorClassIdentifier: 
+  event_selection_point: {fileID: 11400000, guid: 4e7818065a7bf85478a2ed4678e76f08, type: 2}

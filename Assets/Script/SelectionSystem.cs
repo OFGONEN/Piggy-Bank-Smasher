@@ -10,6 +10,7 @@ using Sirenix.OdinInspector;
 public class SelectionSystem : ScriptableObject
 {
 #region Fields
+	[ SerializeField ] Vector3GameEvent event_selection_point;
 
 // Private
     Camera camera_main;
@@ -24,7 +25,6 @@ public class SelectionSystem : ScriptableObject
 #endregion
 
 #region API
-    [ Button() ]
     public void OnFingerUpdate( Vector2 fingerPosition )
     {
 		onFingerUpdate( fingerPosition );
@@ -49,14 +49,17 @@ public class SelectionSystem : ScriptableObject
 #region Implementation
     void SelectPointOnWorld( Vector2 fingerPosition )
     {
-		var screenPointNear = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.nearClipPlane ) );
-		var screenPointFar  = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.farClipPlane ) );
+		var worldPointNear = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.nearClipPlane ) );
+		var worldPointFar  = camera_main.ScreenToWorldPoint( fingerPosition.ConvertToVector3( camera_main.farClipPlane ) );
 
-		var direction = ( screenPointFar - screenPointNear ).normalized;
+		var direction = ( worldPointFar - worldPointNear ).normalized;
 		var layerMask = 1 << GameSettings.Instance.selection_layer;
 
-		RaycastHit hitInfo; // %100 hit rate
+		//Info: Since the environment surface always cover the whole screen this raycast will hit it %100
+		RaycastHit hitInfo;
+		Physics.Raycast( worldPointNear, direction, out hitInfo, GameSettings.Instance.selection_distance, layerMask );
 
+		event_selection_point.Raise( hitInfo.point );
 	}
 #endregion
 
