@@ -32,7 +32,8 @@ public class SelectionSystem : ScriptableObject
 
     public void OnCameraReferenceUpdate( object cameraObject )
     {
-		camera_main = ( cameraObject as Transform ).GetComponent< Camera >();
+		if( cameraObject != null )
+			camera_main = ( cameraObject as Transform ).GetComponent< Camera >();
 	}
 
     public void OnLevelStart()
