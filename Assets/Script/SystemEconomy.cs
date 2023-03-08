@@ -41,7 +41,7 @@ public struct EconomyData
 {
 	public float damage;
 	public float unlock_cost;
-	[ SerializeField ] EconomySpawnData[] spawn_data_array;
+	public EconomySpawnData[] spawn_data_array;
 }
 
 [ System.Serializable ]
