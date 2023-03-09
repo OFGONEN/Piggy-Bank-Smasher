@@ -41,14 +41,14 @@ public class SystemSpawner : ScriptableObject
 #region Implementation
     void OnSpawnUpdate()
     {
-		notif_spawn_progress.SharedValue = cooldown.ElapsedPercentage;
+		notif_spawn_progress.SharedValue = cooldown.GetElapsedPercentageSafe();
 	}
 
     void OnSpawnComplete()
     {
-        SpawnPiggyBank();
-
 		notif_spawn_progress.SharedValue = 0;
+
+        SpawnPiggyBank();
 		StartSpawnCooldown();
 	}
 

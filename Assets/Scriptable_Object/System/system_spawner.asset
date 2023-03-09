@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ce723b3f15cd46876b5868b8cef98, type: 3}
   m_Name: system_spawner
   m_EditorClassIdentifier: 
-  notif_spawn_progress: {fileID: 11400000, guid: 43438d720c16f2e4aa5a19d520e1e15f, type: 2}
+  notif_spawn_progress: {fileID: 11400000, guid: bd89fe0c3cb7ff34997d0575d744a473, type: 2}
   system_economy: {fileID: 11400000, guid: 68c0debcc5edf32458bec0b8043f4d2d, type: 2}
   pool_piggyBank: {fileID: 11400000, guid: 2dce2b9af4d578944bc1849b5750de4d, type: 2}
   library_piggyBank_data: {fileID: 11400000, guid: 198c7e3fbca7dee4193603a9cb4ce3c4, type: 2}
