@@ -50,6 +50,13 @@ namespace FFStudio
 			Start( duration,onCompleteDelegate, loop );
 		}
 #endif
+		public float GetElapsedPercentageSafe()
+		{
+			if( recycledTween_cooldown.Tween != null )
+				return ElapsedPercentage;
+
+			return 0;
+		}
 
 		public void Kill()
 		{
