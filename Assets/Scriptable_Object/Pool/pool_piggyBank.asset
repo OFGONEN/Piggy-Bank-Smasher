@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8a159bec6f4844ca0c23bb2a749fc6, type: 3}
   m_Name: pool_piggyBank
   m_EditorClassIdentifier: 
-  stackSize: 0
-  pool_entity: {fileID: 0}
+  stackSize: 128
+  pool_entity: {fileID: 2436574265069552613, guid: 79e9df62cbd4d3941899194b6daad64c, type: 3}
