@@ -14,6 +14,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] SystemEconomy system_economy;
     [ SerializeField ] Currency notif_currency;
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
+    [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
@@ -32,6 +33,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #region API
     public void Spawn( PiggyBankData data, Vector3 position )
     {
+		notif_piggyBank_count.SharedValue += 1;
+
 		data_current   = data;
 		health_current = data.health;
 
@@ -43,6 +46,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+		//todo Haptic
 		health_current -= system_economy.Damage;
         
         if( health_current <= 0 )
@@ -57,6 +61,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     {
 		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
 
+		notif_piggyBank_count.SharedValue -= 1;
 		pool_piggyBank.ReturnEntity( this );
 	}
 
@@ -75,3 +80,6 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #endif
 #endregion
 }
+
+
+//todo Trail on piggys
