@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: mat_money
-    second: {fileID: 2100000, guid: a2829df0bfae7214390d3aa9dcc77c64, type: 2}
+    second: {fileID: 2100000, guid: 168476779eb069648a1c6bfb19e7bfb1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: mat_piggy_bank
-    second: {fileID: 2100000, guid: a2829df0bfae7214390d3aa9dcc77c64, type: 2}
+    second: {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
