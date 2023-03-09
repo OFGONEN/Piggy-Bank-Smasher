@@ -29,6 +29,11 @@ public class SystemEconomy : ScriptableObject
 		economy_index = PlayerPrefsUtility.Instance.GetInt( Extensions.Key_Economy, 0 );
 	}
 
+	public void Unlock()
+	{
+		economy_index = Mathf.Min( economy_data_array.Length - 1, economy_index + 1 );
+	}
+
 	public EconomySpawnData GetSpawnData()
 	{
 		var random = Random.Range( 0, 100 );
