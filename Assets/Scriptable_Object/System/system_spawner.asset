@@ -16,3 +16,4 @@ MonoBehaviour:
   system_economy: {fileID: 11400000, guid: 68c0debcc5edf32458bec0b8043f4d2d, type: 2}
   pool_piggyBank: {fileID: 11400000, guid: 2dce2b9af4d578944bc1849b5750de4d, type: 2}
   library_piggyBank_data: {fileID: 11400000, guid: 198c7e3fbca7dee4193603a9cb4ce3c4, type: 2}
+  notif_piggyBank_count: {fileID: 11400000, guid: bd40abded4895a54cb134553a5ee8626, type: 2}

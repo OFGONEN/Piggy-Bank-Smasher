@@ -16,6 +16,7 @@ public class SystemSpawner : ScriptableObject
     [ SerializeField ] SystemEconomy system_economy;
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
     [ SerializeField ] PiggyBankDataLibrary library_piggyBank_data;
+    [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 
     Cooldown cooldown = new Cooldown();
 #endregion
@@ -36,32 +37,41 @@ public class SystemSpawner : ScriptableObject
     {
 		cooldown.Kill();
 	}
+
+	public void OnSpawnManual()
+	{
+		OnSpawnCooldownComplete();
+	}
 #endregion
 
 #region Implementation
-    void OnSpawnUpdate()
+    void OnSpawnCooldownUpdate()
     {
 		notif_spawn_progress.SharedValue = cooldown.GetElapsedPercentageSafe();
 	}
 
-    void OnSpawnComplete()
+    void OnSpawnCooldownComplete()
     {
 		notif_spawn_progress.SharedValue = 0;
+		cooldown.Kill();
 
-        SpawnPiggyBank();
+		SpawnPiggyBank();
 		StartSpawnCooldown();
 	}
 
     void StartSpawnCooldown() 
     {
 		cooldown.Start( GameSettings.Instance.spawn_duration,
-			OnSpawnUpdate,
-			OnSpawnComplete
+			OnSpawnCooldownUpdate,
+			OnSpawnCooldownComplete
         );
     }
 
     void SpawnPiggyBank()
     {
+		if( notif_piggyBank_count.sharedValue >= system_economy.MaxSpawnCount )
+			return;
+
 		var spawnData     = system_economy.GetSpawnData();
 		var count         = spawnData.count_range.ReturnRandom();
 		var piggyBankData = library_piggyBank_data.GetPiggyBankData( spawnData.level );
