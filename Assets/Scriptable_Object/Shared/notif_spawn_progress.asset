@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feb853e8cafff9645acad29d74008d50, type: 3}
-  m_Name: notif_spawn_duration
+  m_Name: notif_spawn_progress
   m_EditorClassIdentifier: 
   sharedValue: 0
