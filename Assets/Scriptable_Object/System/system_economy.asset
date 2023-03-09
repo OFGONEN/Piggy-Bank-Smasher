@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6b6b371e9b6a4d8856f1dc5a42474, type: 3}
   m_Name: system_economy
   m_EditorClassIdentifier: 
+  notif_currency: {fileID: 11400000, guid: d4c5c989639186846af7168e8f62d606, type: 2}
   economy_data_array:
   - damage: 1
     unlock_cost: 0

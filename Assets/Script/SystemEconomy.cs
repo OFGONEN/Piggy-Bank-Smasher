@@ -4,11 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FFStudio;
+using Sirenix.OdinInspector;
 
 [ CreateAssetMenu( fileName = "system_economy", menuName = "FF/Game/Economy System" ) ]
 public class SystemEconomy : ScriptableObject
 {
 #region Fields
+  [ Title( "Shared" ) ]
+	[ SerializeField ] Currency notif_currency;
+
+  [ Title( "Setup" ) ]
 	[ SerializeField ] EconomyData[] economy_data_array;
     int economy_index;
 #endregion
@@ -16,7 +21,7 @@ public class SystemEconomy : ScriptableObject
 #region Properties
     public int Index        => economy_index;
     public bool IsMaxed     => economy_data_array.Length - 1 == economy_index;
-    public float UnlockCost => economy_data_array[ economy_index ].unlock_cost;
+    public float UnlockCost => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_cost;
     public float Damage     => economy_data_array[ economy_index ].damage;
 #endregion
 
@@ -31,6 +36,7 @@ public class SystemEconomy : ScriptableObject
 
 	public void Unlock()
 	{
+		notif_currency.SharedValue -= UnlockCost;
 		economy_index = Mathf.Min( economy_data_array.Length - 1, economy_index + 1 );
 	}
 
