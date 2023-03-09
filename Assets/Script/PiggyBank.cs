@@ -45,7 +45,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     {
 		health_current -= system_economy.Damage;
         
-        if( health_current < 0 )
+        if( health_current <= 0 )
 			OnSmashed();
 		else
 			OnDamaged();
