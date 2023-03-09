@@ -11,6 +11,13 @@ using Sirenix.OdinInspector;
 public class SystemSpawner : ScriptableObject
 {
 #region Fields
+  [ Title( "Shared" ) ]
+    [ SerializeField ] SharedFloatNotifier notif_spawn_progress;
+    [ SerializeField ] SystemEconomy system_economy;
+    [ SerializeField ] PoolPiggyBank pool_piggyBank;
+    [ SerializeField ] PiggyBankDataLibrary library_piggyBank_data;
+
+    Cooldown cooldown = new Cooldown();
 #endregion
 
 #region Properties
@@ -22,11 +29,54 @@ public class SystemSpawner : ScriptableObject
 #region API
     public void OnLevelStarted()
     {
+		StartSpawnCooldown();
+	}
 
-    }
+    public void OnLevelFinished()
+    {
+		cooldown.Kill();
+	}
 #endregion
 
 #region Implementation
+    void OnSpawnUpdate()
+    {
+		notif_spawn_progress.SharedValue = cooldown.ElapsedPercentage;
+	}
+
+    void OnSpawnComplete()
+    {
+        SpawnPiggyBank();
+
+		notif_spawn_progress.SharedValue = 0;
+		StartSpawnCooldown();
+	}
+
+    void StartSpawnCooldown() 
+    {
+		cooldown.Start( GameSettings.Instance.spawn_duration,
+			OnSpawnUpdate,
+			OnSpawnComplete
+        );
+    }
+
+    void SpawnPiggyBank()
+    {
+		var spawnData     = system_economy.GetSpawnData();
+		var count         = spawnData.count_range.ReturnRandom();
+		var piggyBankData = library_piggyBank_data.GetPiggyBankData( spawnData.level );
+
+		for( var i = 0; i < count; i++ )
+        {
+			var randomPoint = Random.insideUnitCircle * GameSettings.Instance.spawn_radius;
+
+			pool_piggyBank.GetEntity().Spawn( piggyBankData, new Vector3( 
+                randomPoint.x,
+                GameSettings.Instance.spawn_height,
+                randomPoint.y
+            ) );
+		}
+	}
 #endregion
 
 #region Editor Only
