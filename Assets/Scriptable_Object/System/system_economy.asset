@@ -16,12 +16,14 @@ MonoBehaviour:
   economy_data_array:
   - damage: 1
     unlock_cost: 0
+    spawn_count_max: 5
     spawn_data_array:
     - percentage: 100
       level: 1
       count_range: {x: 1, y: 1}
   - damage: 2
     unlock_cost: 100
+    spawn_count_max: 10
     spawn_data_array:
     - percentage: 25
       level: 1
