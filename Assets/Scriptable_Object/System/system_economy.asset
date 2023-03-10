@@ -16,18 +16,95 @@ MonoBehaviour:
   economy_data_array:
   - damage: 1
     unlock_cost: 0
-    spawn_count_max: 5
+    spawn_count_max: 30
     spawn_data_array:
     - percentage: 100
       level: 1
       count_range: {x: 1, y: 1}
   - damage: 2
-    unlock_cost: 100
-    spawn_count_max: 10
+    unlock_cost: 50
+    spawn_count_max: 33
     spawn_data_array:
-    - percentage: 25
+    - percentage: 90
       level: 1
-      count_range: {x: 5, y: 7}
-    - percentage: 75
+      count_range: {x: 1, y: 1}
+    - percentage: 10
       level: 2
+      count_range: {x: 1, y: 1}
+  - damage: 4
+    unlock_cost: 500
+    spawn_count_max: 38
+    spawn_data_array:
+    - percentage: 85
+      level: 1
+      count_range: {x: 1, y: 1}
+    - percentage: 10
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 5
+      level: 3
+      count_range: {x: 1, y: 1}
+  - damage: 8
+    unlock_cost: 3000
+    spawn_count_max: 46
+    spawn_data_array:
+    - percentage: 80
+      level: 1
+      count_range: {x: 1, y: 1}
+    - percentage: 10
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 5
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 1
+      level: 4
+      count_range: {x: 1, y: 1}
+  - damage: 16
+    unlock_cost: 10000
+    spawn_count_max: 57
+    spawn_data_array:
+    - percentage: 80
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 10
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 5
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 1
+      level: 5
+      count_range: {x: 1, y: 1}
+  - damage: 32
+    unlock_cost: 25000
+    spawn_count_max: 70
+    spawn_data_array:
+    - percentage: 80
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 10
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 5
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 1
+      level: 6
+      count_range: {x: 1, y: 1}
+  - damage: 64
+    unlock_cost: 100000
+    spawn_count_max: 70
+    spawn_data_array:
+    - percentage: 80
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 10
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 5
+      level: 6
+      count_range: {x: 1, y: 1}
+    - percentage: 1
+      level: 7
       count_range: {x: 1, y: 1}
