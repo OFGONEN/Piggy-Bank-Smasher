@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e1188dda646b394cb5a2b08d1cc151f, type: 3}
-  m_Name: shared_piggyBank_data_2
+  m_Name: shared_piggyBank_data_6
   m_EditorClassIdentifier: 
-  level: 2
-  health: 2
-  curreny_range: {x: 6, y: 19}
-  merge_count: 8
-  next_data: {fileID: 11400000, guid: d46583068f40d7a41b3502721c8b37ac, type: 2}
+  level: 6
+  health: 32
+  curreny_range: {x: 12817, y: 38452}
+  merge_count: 2
+  next_data: {fileID: 11400000, guid: a3940626145220a41b96cd53b9c28603, type: 2}
