@@ -19,6 +19,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
+    [ SerializeField ] MeshFilter mesh_filter;
+    [ SerializeField ] MeshRenderer mesh_renderer;
 
 // Private
     [ ShowInInspector, ReadOnly ] PiggyBankData data_current;
@@ -40,6 +42,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 		system_merger.AddPiggyBank( this );
 		notif_piggyBank_count.SharedValue += 1;
+
+		UpdateVisual();
 
 		transform.position    = position;
 		transform.eulerAngles = Vector3.zero.SetY( Random.Range( 0, 360 ) );
@@ -67,7 +71,10 @@ public class PiggyBank : MonoBehaviour, IInteractable
 	public void GetMerge()
 	{
 		//todo Implement a sequence for it
+		system_merger.RemovePiggyBank( this );
 		data_current = data_current.next_data;
+		system_merger.AddPiggyBank( this );
+
 		UpdateVisual();
 	}
 #endregion
@@ -86,7 +93,9 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void UpdateVisual()
     {
-    }
+		mesh_filter.mesh              = data_current.mesh;
+		mesh_renderer.sharedMaterials = data_current.material_array;
+	}
 
 	[ Button() ]
 	void ReturnToPool()
