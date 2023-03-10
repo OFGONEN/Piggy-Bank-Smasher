@@ -20,13 +20,13 @@ public class Currency : SharedFloatNotifier
 #region API
     public void Load()
     {
-		SharedValue = PlayerPrefsUtility.Instance.GetFloat( Extensions.Key_Currency, 0 );
+		LoadFromPlayerPrefs_DefaultCustom( 0 );
 	}
 
     public void Save()
     {
-		PlayerPrefsUtility.Instance.SetFloat( Extensions.Key_Currency, sharedValue );
-    }
+		SaveToPlayerPrefs();
+	}
 #endregion
 
 #region Implementation
