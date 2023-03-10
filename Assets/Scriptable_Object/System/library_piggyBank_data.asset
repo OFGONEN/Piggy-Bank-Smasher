@@ -20,4 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 04365dc560d585947802888067242bfc, type: 2}
   - {fileID: 11400000, guid: 283eefa181f36144eaf707476e4a72c6, type: 2}
   - {fileID: 11400000, guid: a3940626145220a41b96cd53b9c28603, type: 2}
-  piggyBank_level_max: 7
+  - {fileID: 11400000, guid: 49d80c4d3642ef8498f89999e49a9264, type: 2}
+  - {fileID: 11400000, guid: 2ec313292b92fdc4082ab14ea065bf0f, type: 2}
+  - {fileID: 11400000, guid: 5ac4d94ac3078024bbff2392aa64d073, type: 2}
+  piggyBank_level_max: 10
