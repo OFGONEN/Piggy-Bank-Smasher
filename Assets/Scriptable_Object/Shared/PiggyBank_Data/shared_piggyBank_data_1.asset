@@ -17,3 +17,6 @@ MonoBehaviour:
   curreny_range: {x: 1, y: 1}
   merge_count: 10
   next_data: {fileID: 11400000, guid: ceff82e60acd99b45a98b103ca031d08, type: 2}
+  mesh: {fileID: -8232519703238884331, guid: 6e92143ef10a30e478ac6a5611a11232, type: 3}
+  material_array:
+  - {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}

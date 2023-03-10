@@ -13,6 +13,8 @@ public class PiggyBankData : ScriptableObject
     public Vector2 curreny_range;
     public int merge_count;
     public PiggyBankData next_data;
+    public Mesh mesh;
+    public Material[] material_array;
 #endregion
 
 #region Properties

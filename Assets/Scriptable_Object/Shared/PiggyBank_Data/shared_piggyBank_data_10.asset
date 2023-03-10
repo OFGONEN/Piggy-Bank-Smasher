@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1188dda646b394cb5a2b08d1cc151f, type: 3}
+  m_Name: shared_piggyBank_data_10
+  m_EditorClassIdentifier: 
+  level: 10
+  health: 64
+  curreny_range: {x: 32043, y: 96130}
+  merge_count: 1000
+  next_data: {fileID: 11400000}
+  mesh: {fileID: 7197641043349009254, guid: a774b4a7cca2d0f40a53188d2910c312, type: 3}
+  material_array:
+  - {fileID: 2100000, guid: a2829df0bfae7214390d3aa9dcc77c64, type: 2}
+  - {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
