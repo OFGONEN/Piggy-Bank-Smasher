@@ -35,6 +35,7 @@ public class SystemEconomy : ScriptableObject
 		economy_index = PlayerPrefsUtility.Instance.GetInt( Extensions.Key_Economy, 0 );
 	}
 
+	[ Button() ]
 	public void Unlock()
 	{
 		notif_currency.SharedValue -= UnlockCost;
