@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e1188dda646b394cb5a2b08d1cc151f, type: 3}
-  m_Name: shared_piggyBank_data_4
+  m_Name: shared_piggyBank_data_9
   m_EditorClassIdentifier: 
-  level: 4
-  health: 8
-  curreny_range: {x: 547, y: 1641}
-  merge_count: 5
-  next_data: {fileID: 11400000, guid: 04365dc560d585947802888067242bfc, type: 2}
-  mesh: {fileID: -8232519703238884331, guid: 0c1302e27e0c077459a56a3ee48899c4, type: 3}
+  level: 9
+  health: 64
+  curreny_range: {x: 32043, y: 96130}
+  merge_count: 1000
+  next_data: {fileID: 11400000}
+  mesh: {fileID: 7733959739592973881, guid: 350313326041db949ac30ff54801615b, type: 3}
   material_array:
-  - {fileID: 2100000, guid: a8e0b9928213ff44d9f0c422aead5e10, type: 2}
+  - {fileID: 2100000, guid: a2829df0bfae7214390d3aa9dcc77c64, type: 2}
+  - {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
