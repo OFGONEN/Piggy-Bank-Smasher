@@ -30,6 +30,13 @@ namespace FFStudio
 			recycledTween_cooldown.Recycle( DOVirtual.DelayedCall( duration, OnComplete ).SetLoops( loop ? -1 : 1 ) );
 		}
 
+		public void Start( float duration, TweenCallback onUpdate, TweenCallback onCompleteDelegate, bool loop = false )
+		{
+			onComplete = onCompleteDelegate;
+			recycledTween_cooldown.Recycle( DOVirtual.DelayedCall( duration, OnComplete ).SetLoops( loop ? -1 : 1 ) );
+			recycledTween_cooldown.Tween.OnUpdate( onUpdate );
+		}
+
 #if UNITY_EDITOR
 		//! Do not use this on build code or wrap it inside of #if Unity_Editor
 		public void Start( float duration, string description, TweenCallback onCompleteDelegate = null, bool loop = false, bool popupTextOnComplete = false )
@@ -43,6 +50,13 @@ namespace FFStudio
 			Start( duration,onCompleteDelegate, loop );
 		}
 #endif
+		public float GetElapsedPercentageSafe()
+		{
+			if( recycledTween_cooldown.Tween != null )
+				return ElapsedPercentage;
+
+			return 0;
+		}
 
 		public void Kill()
 		{

@@ -10,7 +10,17 @@ namespace FFStudio
     {
 #region Fields (Settings)
     // Info: You can use Title() attribute ONCE for every game-specific group of settings.
-    
+    [ Title( "Spawn" ) ]
+		[ LabelText( "Spawn Duration" ) ] public float spawn_duration;
+		[ LabelText( "Spawn Height" ) ] public float spawn_height;
+		[ LabelText( "Spawn Radius" ) ] public float spawn_radius;
+
+    [ Title( "Cursor" ) ]
+		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
+    [ Title( "Selection" ) ]
+        [ LabelText( "Selection Layer" ), Layer() ] public int selection_layer;
+        [ LabelText( "Selection Distance" ) ] public float selection_distance;
+
     [ Title( "Camera" ) ]
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
     

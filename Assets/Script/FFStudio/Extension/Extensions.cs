@@ -11,7 +11,9 @@ namespace FFStudio
 {
 	public static class Extensions
 	{
-		public static readonly string SAVE_PATH = Application.persistentDataPath + "/Saves/";
+		public static readonly string SAVE_PATH    = Application.persistentDataPath + "/Saves/";
+		public static readonly string Key_Economy  = "Economy";
+		public static readonly string Key_Currency = "Currency";
 
 		static List< Transform > baseModelBones   = new List< Transform >( 96 );
 		static List< Transform > targetModelBones = new List< Transform >( 96 );
@@ -298,6 +300,11 @@ namespace FFStudio
 		public static T ReturnRandom< T >( this T[] array )
 		{
 			return array[ Random.Range( 0, array.Length ) ];
+		}
+
+		public static T ReturnRandom< T >( this List< T > list )
+		{
+			return list[ Random.Range( 0, list.Count ) ];
 		}
 
 		public static void DestroyAllChildren( this Transform transform )
