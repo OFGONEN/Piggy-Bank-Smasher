@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1188dda646b394cb5a2b08d1cc151f, type: 3}
   m_Name: shared_piggyBank_data_2
   m_EditorClassIdentifier: 
+  level: 2
   health: 2
   curreny_range: {x: 11, y: 13}
   merge_count: 10
