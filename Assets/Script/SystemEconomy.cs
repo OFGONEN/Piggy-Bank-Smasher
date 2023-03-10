@@ -44,11 +44,14 @@ public class SystemEconomy : ScriptableObject
 
 	public EconomySpawnData GetSpawnData()
 	{
-		var random = Random.Range( 0, 100 );
+		int random = Random.Range( 0, 100 );
+		int percentage = 0;
 
 		for( var x = 0; x < economy_data_array[ economy_index ].spawn_data_array.Length; x++ )
 		{
-			if( random <= economy_data_array[ economy_index ].spawn_data_array[ x ].percentage )
+			percentage += economy_data_array[ economy_index ].spawn_data_array[ x ].percentage;
+
+			if( random <= percentage )
 				return economy_data_array[ economy_index ].spawn_data_array[ x ];
 		}
 
