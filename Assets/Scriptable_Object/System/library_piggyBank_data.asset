@@ -15,3 +15,4 @@ MonoBehaviour:
   piggyBank_data_array:
   - {fileID: 11400000, guid: 75c261e1d5ec8e54a8c97bd6bcb0cd8e, type: 2}
   - {fileID: 11400000, guid: ceff82e60acd99b45a98b103ca031d08, type: 2}
+  piggyBank_level_max: 2
