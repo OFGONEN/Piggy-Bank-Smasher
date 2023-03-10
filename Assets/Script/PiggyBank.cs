@@ -12,6 +12,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
   [ Title( "Setup" ) ]
   [ Title( "Shared" ) ]
     [ SerializeField ] SystemEconomy system_economy;
+    [ SerializeField ] SystemMerger system_merger;
     [ SerializeField ] Currency notif_currency;
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
@@ -20,11 +21,12 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] Rigidbody _rigidbody;
 
 // Private
-    PiggyBankData data_current;
+    [ ShowInInspector, ReadOnly ] PiggyBankData data_current;
     float health_current;
 #endregion
 
 #region Properties
+	public PiggyBankData Data => data_current;
 #endregion
 
 #region Unity API
@@ -33,10 +35,11 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #region API
     public void Spawn( PiggyBankData data, Vector3 position )
     {
-		notif_piggyBank_count.SharedValue += 1;
-
 		data_current   = data;
 		health_current = data.health;
+
+		system_merger.AddPiggyBank( this );
+		notif_piggyBank_count.SharedValue += 1;
 
 		transform.position    = position;
 		transform.eulerAngles = Vector3.zero.SetY( Random.Range( 0, 360 ) );
@@ -54,25 +57,45 @@ public class PiggyBank : MonoBehaviour, IInteractable
 		else
 			OnDamaged();
 	}
+
+	public void DoMerge( PiggyBank piggyBank )
+	{
+		//todo Implement a sequence for it
+		ReturnToPool();
+	}
+
+	public void GetMerge()
+	{
+		//todo Implement a sequence for it
+		data_current = data_current.next_data;
+		UpdateVisual();
+	}
 #endregion
 
 #region Implementation
     void OnSmashed()
     {
 		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
-
-		notif_piggyBank_count.SharedValue -= 1;
-		pool_piggyBank.ReturnEntity( this );
+		ReturnToPool();
 	}
 
     void OnDamaged()
     {
-
+		// todo spawn PFX
     }
 
     void UpdateVisual()
     {
     }
+
+	[ Button() ]
+	void ReturnToPool()
+	{
+		system_merger.RemovePiggyBank( this );
+		notif_piggyBank_count.SharedValue -= 1;
+
+		pool_piggyBank.ReturnEntity( this );
+	}
 #endregion
 
 #region Editor Only
