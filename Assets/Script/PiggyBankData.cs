@@ -8,6 +8,7 @@ using UnityEngine;
 public class PiggyBankData : ScriptableObject
 {
 #region Fields
+    public int level;
     public float health;
     public Vector2 curreny_range;
     public int merge_count;
