@@ -83,6 +83,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     void OnSmashed()
     {
 		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
+		notif_currency.Save();
 		ReturnToPool();
 	}
 
