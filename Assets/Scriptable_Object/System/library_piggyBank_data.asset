@@ -15,4 +15,9 @@ MonoBehaviour:
   piggyBank_data_array:
   - {fileID: 11400000, guid: 75c261e1d5ec8e54a8c97bd6bcb0cd8e, type: 2}
   - {fileID: 11400000, guid: ceff82e60acd99b45a98b103ca031d08, type: 2}
-  piggyBank_level_max: 2
+  - {fileID: 11400000, guid: d46583068f40d7a41b3502721c8b37ac, type: 2}
+  - {fileID: 11400000, guid: 0da977f5fd995c743bc7bdcc9406e6ee, type: 2}
+  - {fileID: 11400000, guid: 04365dc560d585947802888067242bfc, type: 2}
+  - {fileID: 11400000, guid: 283eefa181f36144eaf707476e4a72c6, type: 2}
+  - {fileID: 11400000, guid: a3940626145220a41b96cd53b9c28603, type: 2}
+  piggyBank_level_max: 7
