@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 535076597242564671}
   - component: {fileID: 2436574265069552613}
   - component: {fileID: 4624398986004652736}
+  - component: {fileID: 7907191582977047194}
   m_Layer: 30
   m_Name: piggyBank
   m_TagString: Untagged
@@ -199,6 +200,7 @@ MonoBehaviour:
   _collider: {fileID: 6435924335966336314}
   mesh_filter: {fileID: 3214606123515943836}
   mesh_renderer: {fileID: 826520986351726422}
+  _colorSetter: {fileID: 7907191582977047194}
 --- !u!54 &4624398986004652736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -215,3 +217,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7907191582977047194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310385000261539909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61403d1aaad9442128114808f0675bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  theRenderer: {fileID: 826520986351726422}

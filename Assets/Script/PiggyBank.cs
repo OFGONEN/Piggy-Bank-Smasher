@@ -24,12 +24,14 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] Collider _collider;
     [ SerializeField ] MeshFilter mesh_filter;
     [ SerializeField ] MeshRenderer mesh_renderer;
+    [ SerializeField ] ColorSetter _colorSetter;
 
 // Private
     [ ShowInInspector, ReadOnly ] PiggyBankData data_current;
     float health_current;
 	RecycledTween recycledTween = new RecycledTween();	
 	RecycledSequence recycledSequence = new RecycledSequence();
+	Color color_start;
 #endregion
 
 #region Properties
@@ -42,8 +44,11 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #region API
     public void Spawn( PiggyBankData data, Vector3 position )
     {
+		// _colorSetter.SetStartColor(); //todo enable this
+
 		data_current   = data;
 		health_current = data.health;
+		color_start    = _colorSetter.ColorStart;
 
 		system_merger.AddPiggyBank( this );
 		notif_piggyBank_count.SharedValue += 1;
@@ -121,7 +126,11 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 	void OnGetMergeDone()
 	{
-		data_current = data_current.next_data;
+		// _colorSetter.SetStartColor(); //todo enable this
+		color_start    = _colorSetter.ColorStart;
+		data_current   = data_current.next_data;
+		health_current = data_current.health;
+
 		system_merger.AddPiggyBank( this );
 
 		UpdateVisual();
@@ -151,7 +160,9 @@ public class PiggyBank : MonoBehaviour, IInteractable
     void OnDamaged()
     {
 		// todo spawn PFX
-    }
+		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
+		_colorSetter.SetColor( Color.Lerp( Color.white, GameSettings.Instance.piggy_damaged_color, ratio ) );
+	}
 
     void UpdateVisual()
     {
