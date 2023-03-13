@@ -16,6 +16,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] Currency notif_currency;
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
+	[ SerializeField ] IntGameEvent event_haptic;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
@@ -56,7 +57,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-		//todo Haptic
+		event_haptic.Raise( 0 );
+
 		health_current -= system_economy.Damage;
         
         if( health_current <= 0 )
