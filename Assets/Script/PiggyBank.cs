@@ -125,6 +125,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 		system_merger.AddPiggyBank( this );
 
 		UpdateVisual();
+		recycledTween.Recycle( GameSettings.Instance.piggy_spawn_punchScale.CreateTween( mesh_renderer.transform ) );
 
 		_rigidbody.isKinematic = false;
 		_rigidbody.useGravity  = true;
