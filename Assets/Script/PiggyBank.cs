@@ -25,6 +25,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 // Private
     [ ShowInInspector, ReadOnly ] PiggyBankData data_current;
     float health_current;
+	RecycledTween recycledTween = new RecycledTween();	
 #endregion
 
 #region Properties
@@ -47,6 +48,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 		transform.position    = position;
 		transform.eulerAngles = Vector3.zero.SetY( Random.Range( 0, 360 ) );
+
+		recycledTween.Recycle( GameSettings.Instance.piggy_spawn_punchScale.CreateTween( mesh_renderer.transform ) );
 
 		gameObject.SetActive( true );
 	}
