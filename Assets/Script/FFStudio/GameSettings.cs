@@ -15,6 +15,9 @@ namespace FFStudio
 		[ LabelText( "Spawn Height" ) ] public float spawn_height;
 		[ LabelText( "Spawn Radius" ) ] public float spawn_radius;
 
+    [ Title( "Piggy Bank" ) ]
+		[ LabelText( "Spawn Punch Scale" ) ] public PunchScaleTween piggy_spawn_punchScale;
+
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
     [ Title( "Selection" ) ]

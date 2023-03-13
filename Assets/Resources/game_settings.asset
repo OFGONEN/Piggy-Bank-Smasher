@@ -15,6 +15,12 @@ MonoBehaviour:
   spawn_duration: 1
   spawn_height: 10
   spawn_radius: 3
+  piggy_spawn_punchScale:
+    strength: {x: 0.25, y: 0.25, z: 0.25}
+    duration: 0.35
+    vibrato: 10
+    elasticity: 1
+    ease: 12
   cursor_movement_speed: 10
   selection_layer: 0
   selection_distance: 100
