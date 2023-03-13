@@ -23,6 +23,7 @@ namespace FFStudio
 		[ LabelText( "Merge Lift Duration" ) ] public float piggy_merge_lift_duration;
 		[ LabelText( "Merge Lift Ease" ) ] public Ease piggy_merge_lift_ease;
 		[ LabelText( "Merge Lift Height" ) ] public float piggy_merge_lift_height;
+		[ LabelText( "Damaged Color" ) ] public Color piggy_damaged_color;
 
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
