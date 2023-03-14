@@ -19,6 +19,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] PoolPiggyBankScatter pool_piggyBank_scatter;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 	[ SerializeField ] IntGameEvent event_haptic;
+	[ SerializeField ] ParticleSpawnEvent event_particle_spawn;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
@@ -108,12 +109,21 @@ public class PiggyBank : MonoBehaviour, IInteractable
 		_rigidbody.useGravity  = false;
 		_collider.enabled      = false;
 
-		var sequence = recycledSequence.Recycle( OnGetMergeDone );
+		var position = transform.position.SetY( GameSettings.Instance.piggy_merge_lift_height );
 
-		sequence.Append( transform.DOMove( transform.position.SetY( GameSettings.Instance.piggy_merge_lift_height ),
+		event_particle_spawn.particle_alias        = "piggy_upgrade";
+		event_particle_spawn.particle_spawn_point  = position + GameSettings.Instance.piggy_pfx_upgrade_offset;
+		event_particle_spawn.particle_spawn_size   = GameSettings.Instance.piggy_pfx_upgrade_size;
+		event_particle_spawn.particle_spawn_parent = transform;
+		event_particle_spawn.keepParentRotation    = false;
+
+		var sequence = recycledSequence.Recycle( OnGetMergeDone );
+		sequence.Append( transform.DOMove( position,
 			GameSettings.Instance.piggy_merge_lift_duration )
 			.SetEase( GameSettings.Instance.piggy_merge_lift_ease ) 
 		);
+
+		sequence.AppendCallback( event_particle_spawn.Raise );
 		sequence.AppendInterval( GameSettings.Instance.piggy_merge_jump_duration );
 	}
 #endregion
@@ -148,6 +158,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 	void OnSmashed()
     {
+		event_particle_spawn.Raise( "piggy_shatter", transform.position, null, GameSettings.Instance.piggy_pfx_shatter_size );
+
 		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
 		notif_currency.Save();
 
@@ -160,6 +172,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void OnDamaged()
     {
+		event_particle_spawn.Raise( "piggy_damage", transform.position );
+
 		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
 		_colorSetter.LerpAllColors( ratio, GameSettings.Instance.piggy_damaged_color );
 	}
