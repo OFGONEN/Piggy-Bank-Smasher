@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: system_merger
   m_EditorClassIdentifier: 
   library_piggyBank_data: {fileID: 11400000, guid: 198c7e3fbca7dee4193603a9cb4ce3c4, type: 2}
+  notif_bool_piggy_merge: {fileID: 11400000, guid: fa919e1c91ed94c3dba5e2b121200c84, type: 2}
