@@ -21,3 +21,12 @@ MonoBehaviour:
   material_array:
   - {fileID: 2100000, guid: a2829df0bfae7214390d3aa9dcc77c64, type: 2}
   - {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
+  scatter_data:
+    mesh_array:
+    - {fileID: -4122916103799640655, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    - {fileID: 697903988925253736, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    - {fileID: -6017172911788317743, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    - {fileID: 1160288528575290666, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    - {fileID: 5673084798034043110, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    - {fileID: -8094190371653704284, guid: 9cd936b92ce587846b04568b33115402, type: 3}
+    material: {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
