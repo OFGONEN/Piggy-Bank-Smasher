@@ -30,6 +30,7 @@ namespace FFStudio
 		[ LabelText( "Upgrade Offset" ) ] public Vector3 piggy_pfx_upgrade_offset;
 		[ LabelText( "Upgrade Size" ) ] public float piggy_pfx_upgrade_size;
 		[ LabelText( "Shatter Size" ) ] public float piggy_pfx_shatter_size;
+		[ LabelText( "Damage Size" ) ] public float piggy_pfx_damage_size;
 
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
