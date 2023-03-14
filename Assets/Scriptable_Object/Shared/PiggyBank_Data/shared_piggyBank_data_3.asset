@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   health: 4
-  curreny_range: {x: 63, y: 188}
-  merge_count: 7
+  curreny_range: {x: 70, y: 211}
+  merge_count: 8
   next_data: {fileID: 11400000, guid: 0da977f5fd995c743bc7bdcc9406e6ee, type: 2}
   mesh: {fileID: -8232519703238884331, guid: efb7858a1a063a84f865b47c139a3123, type: 3}
   material_array:
