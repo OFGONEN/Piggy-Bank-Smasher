@@ -15,6 +15,7 @@ public class PiggyBankData : ScriptableObject
     public PiggyBankData next_data;
     public Mesh mesh;
     public Material[] material_array;
+    public ScatterMeshData scatter_data;
 #endregion
 
 #region Properties
@@ -33,4 +34,11 @@ public class PiggyBankData : ScriptableObject
 #if UNITY_EDITOR
 #endif
 #endregion
+}
+
+[ System.Serializable ]
+public struct ScatterMeshData
+{
+    public Mesh[] mesh_array;
+    public Material material;
 }

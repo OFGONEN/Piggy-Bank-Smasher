@@ -177,16 +177,16 @@ namespace FFStudio
 			TransformData data;
 			data.position = transform.localPosition;
 			data.rotation = transform.localEulerAngles;
-			data.scale = transform.localScale;
+			data.scale    = transform.localScale;
 
 			return data;
 		}
 
 		public static void SetLocalTransformData( this Transform transform, TransformData data )
 		{
-			transform.localPosition = data.position;
+			transform.localPosition    = data.position;
 			transform.localEulerAngles = data.rotation;
-			transform.localScale = data.scale;
+			transform.localScale       = data.scale;
 		}
 
 		// Takes root bones as parameters that are children of a humanoid model.

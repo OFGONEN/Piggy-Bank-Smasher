@@ -194,6 +194,7 @@ MonoBehaviour:
   system_merger: {fileID: 11400000, guid: 0c70f14560f48304599b404fe0584501, type: 2}
   notif_currency: {fileID: 11400000, guid: d4c5c989639186846af7168e8f62d606, type: 2}
   pool_piggyBank: {fileID: 11400000, guid: 2dce2b9af4d578944bc1849b5750de4d, type: 2}
+  pool_piggyBank_scatter: {fileID: 11400000, guid: e5f3fc8deba494dd4882d0c233f699b8, type: 2}
   notif_piggyBank_count: {fileID: 11400000, guid: bd40abded4895a54cb134553a5ee8626, type: 2}
   event_haptic: {fileID: 11400000, guid: a5edacec3496d4c5f9e94958dd3b9adf, type: 2}
   _rigidbody: {fileID: 4624398986004652736}

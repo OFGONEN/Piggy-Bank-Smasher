@@ -16,6 +16,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] SystemMerger system_merger;
     [ SerializeField ] Currency notif_currency;
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
+    [ SerializeField ] PoolPiggyBankScatter pool_piggyBank_scatter;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 	[ SerializeField ] IntGameEvent event_haptic;
 
@@ -155,6 +156,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 		notif_piggyBank_count.SharedValue -= 1;
 
 		pool_piggyBank.ReturnEntity( this );
+		pool_piggyBank_scatter.GetEntity().Execute( transform, data_current );
 	}
 
     void OnDamaged()
