@@ -28,6 +28,7 @@ MonoBehaviour:
   piggy_merge_lift_ease: 12
   piggy_merge_lift_height: 20
   piggy_damaged_color: {r: 0.24528301, g: 0.23949803, b: 0.23949803, a: 1}
+  piggy_scatter_duration: 1.5
   cursor_movement_speed: 10
   selection_layer: 0
   selection_distance: 100
