@@ -172,8 +172,6 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void OnDamaged()
     {
-		event_particle_spawn.Raise( "piggy_damage", transform.position );
-
 		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
 		_colorSetter.LerpAllColors( ratio, GameSettings.Instance.piggy_damaged_color );
 	}
