@@ -32,7 +32,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     float health_current;
 	RecycledTween recycledTween = new RecycledTween();	
 	RecycledSequence recycledSequence = new RecycledSequence();
-	Color color_start;
+	Cooldown cooldown = new Cooldown();
 #endregion
 
 #region Properties
@@ -45,11 +45,10 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #region API
     public void Spawn( PiggyBankData data, Vector3 position )
     {
-		// _colorSetter.SetStartColor(); //todo enable this
+		cooldown.Start( Time.deltaTime, _colorSetter.SetStartColors );
 
 		data_current   = data;
 		health_current = data.health;
-		color_start    = _colorSetter.ColorStart;
 
 		system_merger.AddPiggyBank( this );
 		notif_piggyBank_count.SharedValue += 1;
@@ -127,8 +126,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 	void OnGetMergeDone()
 	{
-		// _colorSetter.SetStartColor(); //todo enable this
-		color_start    = _colorSetter.ColorStart;
+		cooldown.Start( Time.deltaTime, _colorSetter.SetStartColors );
+		
 		data_current   = data_current.next_data;
 		health_current = data_current.health;
 
@@ -161,9 +160,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void OnDamaged()
     {
-		// todo spawn PFX
 		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
-		_colorSetter.SetColor( Color.Lerp( Color.white, GameSettings.Instance.piggy_damaged_color, ratio ) );
+		_colorSetter.LerpAllColors( ratio, GameSettings.Instance.piggy_damaged_color );
 	}
 
     void UpdateVisual()
