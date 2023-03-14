@@ -10,22 +10,26 @@ namespace FFStudio
 	{
 #region Fields
 		[ TitleGroup( "Setup" ), SerializeField ] Color color;
-
+		[ TitleGroup( "Setup" ), SerializeField ] Renderer theRenderer;
 		static int SHADER_ID_COLOR = Shader.PropertyToID( "_BaseColor" );
 
-		Renderer theRenderer;
 		MaterialPropertyBlock propertyBlock;
+		[ ShowInInspector, ReadOnly ] Color color_start;
 #endregion
 
 #region Properties
+		public Color ColorStart => color_start;
 #endregion
 
 #region Unity API
 		void Awake()
 		{
-			theRenderer = GetComponent< Renderer >();
-
 			propertyBlock = new MaterialPropertyBlock();
+		}
+
+		private void Start()
+		{
+			color_start = GetColor();
 		}
 #endregion
 
@@ -34,6 +38,13 @@ namespace FFStudio
 		{
 			this.color = color;
 
+			SetColor();
+		}
+
+		[ Button() ]
+		public void SetStartColor()
+		{
+			this.color = color_start;
 			SetColor();
 		}
 

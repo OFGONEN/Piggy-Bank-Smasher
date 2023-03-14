@@ -15,6 +15,16 @@ namespace FFStudio
 		[ LabelText( "Spawn Height" ) ] public float spawn_height;
 		[ LabelText( "Spawn Radius" ) ] public float spawn_radius;
 
+    [ Title( "Piggy Bank" ) ]
+		[ LabelText( "Spawn Punch Scale" ) ] public PunchScaleTween piggy_spawn_punchScale;
+		[ LabelText( "Merge Jump Duration" ) ] public float piggy_merge_jump_duration;
+		[ LabelText( "Merge Jump Power" ) ] public float piggy_merge_jump_power;
+		[ LabelText( "Merge Jump Ease" ) ] public Ease piggy_merge_jump_ease;
+		[ LabelText( "Merge Lift Duration" ) ] public float piggy_merge_lift_duration;
+		[ LabelText( "Merge Lift Ease" ) ] public Ease piggy_merge_lift_ease;
+		[ LabelText( "Merge Lift Height" ) ] public float piggy_merge_lift_height;
+		[ LabelText( "Damaged Color" ) ] public Color piggy_damaged_color;
+
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
     [ Title( "Selection" ) ]
