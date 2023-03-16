@@ -19,12 +19,13 @@ public class SystemEconomy : ScriptableObject
 #endregion
 
 #region Properties
-    public int Index         => economy_index;
-    public bool IsMaxed      => economy_data_array.Length - 1 == economy_index;
-    public float Damage      => economy_data_array[ economy_index ].damage;
-    public int MaxSpawnCount => economy_data_array[ economy_index ].spawn_count_max;
-    public float UnlockCost  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_cost;
-    bool IsUnlockCostFormated  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_formated;
+    public int Index            => economy_index;
+    public bool IsMaxed         => economy_data_array.Length - 1 == economy_index;
+    public float Damage         => economy_data_array[ economy_index ].damage;
+    public int MaxSpawnCount    => economy_data_array[ economy_index ].spawn_count_max;
+    public float UnlockCost     => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_cost;
+    public Sprite UnlockSprite  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_sprite;
+    bool   IsUnlockCostFormated => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_formated;
 #endregion
 
 #region Unity API
