@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   health: 4
-  curreny_range: {x: 63, y: 188}
-  merge_count: 7
+  curreny_range: {x: 70, y: 211}
+  merge_count: 8
   next_data: {fileID: 11400000, guid: 0da977f5fd995c743bc7bdcc9406e6ee, type: 2}
   mesh: {fileID: -8232519703238884331, guid: efb7858a1a063a84f865b47c139a3123, type: 3}
   material_array:
   - {fileID: 2100000, guid: e2dae518a4a7d0641ad3e0b94259ffe9, type: 2}
   scatter_data:
     mesh_array:
-    - {fileID: -4122916103799640655, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    - {fileID: 697903988925253736, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    - {fileID: -6017172911788317743, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    - {fileID: 1160288528575290666, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    - {fileID: 5673084798034043110, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    - {fileID: -8094190371653704284, guid: 9cd936b92ce587846b04568b33115402, type: 3}
-    material: {fileID: 2100000, guid: 33eb2beb6ecff8345bbb4becd14e7588, type: 2}
+    - {fileID: -4122916103799640655, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    - {fileID: 697903988925253736, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    - {fileID: -6017172911788317743, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    - {fileID: 1160288528575290666, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    - {fileID: 5673084798034043110, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    - {fileID: -8094190371653704284, guid: fb3993bd95217f24f8be33a27c269d28, type: 3}
+    material: {fileID: 2100000, guid: e2dae518a4a7d0641ad3e0b94259ffe9, type: 2}
