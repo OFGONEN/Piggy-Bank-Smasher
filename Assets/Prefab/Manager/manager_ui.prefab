@@ -2369,6 +2369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   system_economy: {fileID: 11400000, guid: 68c0debcc5edf32458bec0b8043f4d2d, type: 2}
   notif_currency: {fileID: 11400000, guid: d4c5c989639186846af7168e8f62d606, type: 2}
+  event_economy_unlock: {fileID: 11400000, guid: d7f1a3eaa6789a24cbc64e4b89bf0347, type: 2}
   _button: {fileID: 1140403893057570919}
   _textRenderer: {fileID: 2958292427832438573}
 --- !u!1 &8118295484264116831

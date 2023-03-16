@@ -14,6 +14,7 @@ public class UIEconomyButton : MonoBehaviour
   [ Title( "Shared" ) ]
     [ SerializeField ] SystemEconomy system_economy;
     [ SerializeField ] Currency notif_currency;
+    [ SerializeField ] GameEvent event_economy_unlock;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Button _button;
@@ -64,9 +65,9 @@ public class UIEconomyButton : MonoBehaviour
 
     public void UpgradeEconomy()
     {
-		system_economy.Unlock();
+		event_economy_unlock.Raise();
 
-        if( system_economy.IsMaxed )
+		if( system_economy.IsMaxed )
         {
 			_button.interactable = false;
 			_textRenderer.text   = "Maxed";
