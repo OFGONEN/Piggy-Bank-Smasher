@@ -38,7 +38,7 @@ public class UIEconomyButton : MonoBehaviour
 			_textRenderer.text = "Maxed";
 		}
 		else
-			_textRenderer.text = system_economy.UnlockCost.ToString();
+			_textRenderer.text = system_economy.GetUnlockCostString();
 	}
 #endregion
 
@@ -83,7 +83,7 @@ public class UIEconomyButton : MonoBehaviour
 		var unlockCost = system_economy.UnlockCost;
 
 		_button.interactable = notif_currency.sharedValue >= unlockCost;
-		_textRenderer.text   = unlockCost.ToString();
+		_textRenderer.text   = system_economy.GetUnlockCostString();
 	}
 #endregion
 
