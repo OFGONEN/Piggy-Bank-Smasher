@@ -91,6 +91,7 @@ public struct EconomyData
 	public float unlock_cost;
 	public bool unlock_formated;
 	public int spawn_count_max;
+	public Sprite unlock_sprite;
 	public EconomySpawnData[] spawn_data_array;
 }
 
