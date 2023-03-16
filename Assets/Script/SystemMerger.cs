@@ -12,8 +12,9 @@ public class SystemMerger : ScriptableObject
 #region Fields
   [ Title( "Shared" ) ]
     [ SerializeField ] PiggyBankDataLibrary library_piggyBank_data;
-    Dictionary< int, Dictionary< int, PiggyBank > > piggyBank_dictionary;
+    [ SerializeField ] SharedBoolNotifier notif_bool_piggy_merge;
 
+    Dictionary< int, Dictionary< int, PiggyBank > > piggyBank_dictionary;
     [ ShowInInspector, ReadOnly ] List< int > piggyBank_merge_list;
     List< PiggyBank > piggyBank_merge_cache;
 #endregion
@@ -50,6 +51,7 @@ public class SystemMerger : ScriptableObject
         if( dictionary.Count >= mergeCount && !piggyBank_merge_list.Contains( level ) )
 			piggyBank_merge_list.Add( level );
 
+		notif_bool_piggy_merge.SharedValue = piggyBank_merge_list.Count > 0;
 	}
 
 	public void RemovePiggyBank( PiggyBank piggyBank )
@@ -65,6 +67,8 @@ public class SystemMerger : ScriptableObject
 
         if( dictionary.Count < mergeCount )
 			piggyBank_merge_list.Remove( level );
+
+		notif_bool_piggy_merge.SharedValue = piggyBank_merge_list.Count > 0;
 	}
 
     public void Merge()

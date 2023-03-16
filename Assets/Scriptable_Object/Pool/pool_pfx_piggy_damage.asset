@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177f03be02d91e545a142cb900695720, type: 3}
-  m_Name: system_merger
+  m_Script: {fileID: 11500000, guid: f2dda4d38786faa47bc9a024540d1517, type: 3}
+  m_Name: pool_pfx_piggy_damage
   m_EditorClassIdentifier: 
-  library_piggyBank_data: {fileID: 11400000, guid: 198c7e3fbca7dee4193603a9cb4ce3c4, type: 2}
-  notif_bool_piggy_merge: {fileID: 11400000, guid: fa919e1c91ed94c3dba5e2b121200c84, type: 2}
+  stackSize: 24
+  pool_entity: {fileID: -1743273988188005668, guid: fd849644968ab44edbd6c41559f055aa, type: 3}

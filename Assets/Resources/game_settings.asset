@@ -29,6 +29,10 @@ MonoBehaviour:
   piggy_merge_lift_height: 12
   piggy_damaged_color: {r: 0.24528301, g: 0.23949803, b: 0.23949803, a: 1}
   piggy_scatter_duration: 1.5
+  piggy_pfx_upgrade_offset: {x: 0, y: 1, z: -1.5}
+  piggy_pfx_upgrade_size: 4
+  piggy_pfx_shatter_size: 1.35
+  piggy_pfx_damage_size: 3
   cursor_movement_speed: 10
   selection_layer: 0
   selection_distance: 100

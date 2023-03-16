@@ -10,6 +10,7 @@ public class Cursor : MonoBehaviour
 {
 #region Fields
     [ SerializeField ] Rigidbody _rigidbody;
+    [ SerializeField ] ParticleSpawnEvent event_particle_spawn;
 
     [ ShowInInspector, ReadOnly ] Vector3 position_target;
     UnityMessage onFixedUpdate = Extensions.EmptyMethod;
@@ -46,6 +47,7 @@ public class Cursor : MonoBehaviour
 	public void TriggerEnter( Collider collider )
 	{
 		( collider.GetComponent< ComponentHost >().HostComponent as IInteractable ).OnInteract();
+		event_particle_spawn.Raise( "piggy_damage", transform.position, null, GameSettings.Instance.piggy_pfx_damage_size );
 	}
 #endregion
 

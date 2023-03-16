@@ -18,7 +18,9 @@ public class SystemSpawner : ScriptableObject
     [ SerializeField ] PiggyBankDataLibrary library_piggyBank_data;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 
-    Cooldown cooldown = new Cooldown();
+	RecycledTween recycledTween = new RecycledTween();
+
+	float spawn_cooldown;
 #endregion
 
 #region Properties
@@ -35,7 +37,7 @@ public class SystemSpawner : ScriptableObject
 
     public void OnLevelFinished()
     {
-		cooldown.Kill();
+		recycledTween.Kill();
 	}
 
 	public void OnSpawnManual()
@@ -47,13 +49,17 @@ public class SystemSpawner : ScriptableObject
 #region Implementation
     void OnSpawnCooldownUpdate()
     {
-		notif_spawn_progress.SharedValue = cooldown.GetElapsedPercentageSafe();
+		notif_spawn_progress.SharedValue = spawn_cooldown;
 	}
 
     void OnSpawnCooldownComplete()
     {
+		spawn_cooldown                   = 0;
 		notif_spawn_progress.SharedValue = 0;
-		cooldown.Kill();
+		recycledTween.Kill();
+
+		if( notif_piggyBank_count.sharedValue >= system_economy.MaxSpawnCount )
+			return;
 
 		SpawnPiggyBank();
 		StartSpawnCooldown();
@@ -61,17 +67,16 @@ public class SystemSpawner : ScriptableObject
 
     void StartSpawnCooldown() 
     {
-		cooldown.Start( GameSettings.Instance.spawn_duration,
-			OnSpawnCooldownUpdate,
-			OnSpawnCooldownComplete
-        );
+		recycledTween.Recycle( 
+			DOTween.To( GetSpawnCooldown, SetSpawnCooldown,
+			1,
+			GameSettings.Instance.spawn_duration ), OnSpawnCooldownComplete );
+
+		recycledTween.Tween.OnUpdate( OnSpawnCooldownUpdate );
     }
 
     void SpawnPiggyBank()
     {
-		if( notif_piggyBank_count.sharedValue >= system_economy.MaxSpawnCount )
-			return;
-
 		var spawnData     = system_economy.GetSpawnData();
 		var count         = spawnData.count_range.ReturnRandom();
 		var piggyBankData = library_piggyBank_data.GetPiggyBankData( spawnData.level );
@@ -86,6 +91,17 @@ public class SystemSpawner : ScriptableObject
                 randomPoint.y
             ) );
 		}
+	}
+
+	float GetSpawnCooldown()
+	{
+		return spawn_cooldown;
+	}
+
+	void SetSpawnCooldown( float value )
+	{
+		spawn_cooldown                   = value;
+		notif_spawn_progress.SharedValue = value;
 	}
 #endregion
 

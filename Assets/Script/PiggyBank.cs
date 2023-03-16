@@ -19,6 +19,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] PoolPiggyBankScatter pool_piggyBank_scatter;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 	[ SerializeField ] IntGameEvent event_haptic;
+	[ SerializeField ] ParticleSpawnEvent event_particle_spawn;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
@@ -32,7 +33,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     float health_current;
 	RecycledTween recycledTween = new RecycledTween();	
 	RecycledSequence recycledSequence = new RecycledSequence();
-	Color color_start;
+	Cooldown cooldown = new Cooldown();
 #endregion
 
 #region Properties
@@ -45,11 +46,10 @@ public class PiggyBank : MonoBehaviour, IInteractable
 #region API
     public void Spawn( PiggyBankData data, Vector3 position )
     {
-		// _colorSetter.SetStartColor(); //todo enable this
+		cooldown.Start( Time.deltaTime, _colorSetter.SetStartColors );
 
 		data_current   = data;
 		health_current = data.health;
-		color_start    = _colorSetter.ColorStart;
 
 		system_merger.AddPiggyBank( this );
 		notif_piggyBank_count.SharedValue += 1;
@@ -109,12 +109,21 @@ public class PiggyBank : MonoBehaviour, IInteractable
 		_rigidbody.useGravity  = false;
 		_collider.enabled      = false;
 
-		var sequence = recycledSequence.Recycle( OnGetMergeDone );
+		var position = transform.position.SetY( GameSettings.Instance.piggy_merge_lift_height );
 
-		sequence.Append( transform.DOMove( transform.position.SetY( GameSettings.Instance.piggy_merge_lift_height ),
+		event_particle_spawn.particle_alias        = "piggy_upgrade";
+		event_particle_spawn.particle_spawn_point  = position + GameSettings.Instance.piggy_pfx_upgrade_offset;
+		event_particle_spawn.particle_spawn_size   = GameSettings.Instance.piggy_pfx_upgrade_size;
+		event_particle_spawn.particle_spawn_parent = transform;
+		event_particle_spawn.keepParentRotation    = false;
+
+		var sequence = recycledSequence.Recycle( OnGetMergeDone );
+		sequence.Append( transform.DOMove( position,
 			GameSettings.Instance.piggy_merge_lift_duration )
 			.SetEase( GameSettings.Instance.piggy_merge_lift_ease ) 
 		);
+
+		sequence.AppendCallback( event_particle_spawn.Raise );
 		sequence.AppendInterval( GameSettings.Instance.piggy_merge_jump_duration );
 	}
 #endregion
@@ -127,8 +136,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 	void OnGetMergeDone()
 	{
-		// _colorSetter.SetStartColor(); //todo enable this
-		color_start    = _colorSetter.ColorStart;
+		cooldown.Start( Time.deltaTime, _colorSetter.SetStartColors );
+		
 		data_current   = data_current.next_data;
 		health_current = data_current.health;
 
@@ -149,6 +158,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 	void OnSmashed()
     {
+		event_particle_spawn.Raise( "piggy_shatter", transform.position, null, GameSettings.Instance.piggy_pfx_shatter_size );
+
 		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
 		notif_currency.Save();
 
@@ -161,9 +172,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void OnDamaged()
     {
-		// todo spawn PFX
 		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
-		_colorSetter.SetColor( Color.Lerp( Color.white, GameSettings.Instance.piggy_damaged_color, ratio ) );
+		_colorSetter.LerpAllColors( ratio, GameSettings.Instance.piggy_damaged_color );
 	}
 
     void UpdateVisual()
