@@ -1093,11 +1093,22 @@ MonoBehaviour:
   tween_text_rotation_ease: 12
   tween_text_rotation_interval: 0.35
   tween_glow_rotation_speed: 3
+  tween_image_scale_start: 0.2
+  tween_image_scale_duration: 0.45
+  tween_image_scale_ease: 12
+  tween_image_punchScale:
+    strength: {x: 0.2, y: 0.2, z: 0.2}
+    duration: 0.35
+    vibrato: 10
+    elasticity: 1
+    ease: 12
+  sequence_cooldown: 2
   gfx_parent: {fileID: 8174525114639696484}
   transform_text: {fileID: 2189246678067622483}
   transform_glow: {fileID: 1524744604332472720}
   image_piggyBank_target: {fileID: 3604633915520433711}
   _button: {fileID: 2791741423616291565}
+  system_economy: {fileID: 11400000, guid: 68c0debcc5edf32458bec0b8043f4d2d, type: 2}
 --- !u!1 &2005316997947299781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &716395387814646654
 RectTransform:
   m_ObjectHideFlags: 0
