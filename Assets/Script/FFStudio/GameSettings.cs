@@ -34,6 +34,7 @@ namespace FFStudio
 
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
+
     [ Title( "Selection" ) ]
         [ LabelText( "Selection Layer" ), Layer() ] public int selection_layer;
         [ LabelText( "Selection Distance" ) ] public float selection_distance;

@@ -38,8 +38,12 @@ public class SystemEconomy : ScriptableObject
 	[ Button() ]
 	public void Unlock()
 	{
-		notif_currency.SharedValue -= UnlockCost;
+		var cost = UnlockCost;
+
 		economy_index = Mathf.Min( economy_data_array.Length - 1, economy_index + 1 );
+		notif_currency.SharedValue -= cost;
+
+		PlayerPrefsUtility.Instance.SetInt( Extensions.Key_Economy, economy_index );
 	}
 
 	public EconomySpawnData GetSpawnData()
