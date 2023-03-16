@@ -30,6 +30,12 @@ namespace FFStudio
 			recycledTween_cooldown.Recycle( DOVirtual.DelayedCall( duration, OnComplete ).SetLoops( loop ? -1 : 1 ) );
 		}
 
+		public void StartUnscaled( float duration, TweenCallback onCompleteDelegate = null )
+		{
+			onComplete = onCompleteDelegate;
+			recycledTween_cooldown.Recycle( DOVirtual.DelayedCall( duration, OnComplete ).SetUpdate( true ) );
+		}
+
 		public void Start( float duration, TweenCallback onUpdate, TweenCallback onCompleteDelegate, bool loop = false )
 		{
 			onComplete = onCompleteDelegate;
