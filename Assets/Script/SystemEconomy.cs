@@ -21,9 +21,10 @@ public class SystemEconomy : ScriptableObject
 #region Properties
     public int Index         => economy_index;
     public bool IsMaxed      => economy_data_array.Length - 1 == economy_index;
-    public float UnlockCost  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_cost;
     public float Damage      => economy_data_array[ economy_index ].damage;
     public int MaxSpawnCount => economy_data_array[ economy_index ].spawn_count_max;
+    public float UnlockCost  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_cost;
+    bool IsUnlockCostFormated  => economy_data_array[ Mathf.Min( economy_data_array.Length - 1, economy_index + 1 ) ].unlock_formated;
 #endregion
 
 #region Unity API
@@ -62,6 +63,16 @@ public class SystemEconomy : ScriptableObject
 		FFLogger.LogError( "Wrong Spawn Return" );
 		return economy_data_array[ economy_index ].spawn_data_array[ 0 ];
 	}
+
+	public string GetUnlockCostString()
+	{
+		var unlockCost = UnlockCost;
+		
+		if( IsUnlockCostFormated )
+			return MathExtensions.FormatBigNumberAANotation( unlockCost );
+		else
+			return unlockCost.ToString();
+	}
 #endregion
 
 #region Implementation
@@ -78,6 +89,7 @@ public struct EconomyData
 {
 	public float damage;
 	public float unlock_cost;
+	public bool unlock_formated;
 	public int spawn_count_max;
 	public EconomySpawnData[] spawn_data_array;
 }
