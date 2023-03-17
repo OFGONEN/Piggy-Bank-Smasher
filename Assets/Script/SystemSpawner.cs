@@ -17,10 +17,10 @@ public class SystemSpawner : ScriptableObject
     [ SerializeField ] PoolPiggyBank pool_piggyBank;
     [ SerializeField ] PiggyBankDataLibrary library_piggyBank_data;
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
-
 	RecycledTween recycledTween = new RecycledTween();
 
 	float spawn_cooldown;
+	float spawn_cooldown_manual;
 #endregion
 
 #region Properties
@@ -42,7 +42,8 @@ public class SystemSpawner : ScriptableObject
 
 	public void OnSpawnManual()
 	{
-		OnSpawnCooldownComplete();
+		if( Time.time >= spawn_cooldown_manual )
+			OnSpawnCooldownComplete();
 	}
 #endregion
 
@@ -55,6 +56,7 @@ public class SystemSpawner : ScriptableObject
     void OnSpawnCooldownComplete()
     {
 		spawn_cooldown                   = 0;
+		spawn_cooldown_manual            = Time.time + GameSettings.Instance.spawn_duration_manual;
 		notif_spawn_progress.SharedValue = 0;
 		recycledTween.Kill();
 
