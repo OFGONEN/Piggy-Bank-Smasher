@@ -12,6 +12,7 @@ namespace FFStudio
     // Info: You can use Title() attribute ONCE for every game-specific group of settings.
     [ Title( "Spawn" ) ]
 		[ LabelText( "Spawn Duration" ) ] public float spawn_duration;
+		[ LabelText( "Spawn Duration Manual" ) ] public float spawn_duration_manual;
 		[ LabelText( "Spawn Height" ) ] public float spawn_height;
 		[ LabelText( "Spawn Radius" ) ] public float spawn_radius;
 
