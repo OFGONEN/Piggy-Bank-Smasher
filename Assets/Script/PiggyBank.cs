@@ -20,6 +20,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     [ SerializeField ] SharedIntNotifier notif_piggyBank_count;
 	[ SerializeField ] IntGameEvent event_haptic;
 	[ SerializeField ] ParticleSpawnEvent event_particle_spawn;
+	[ SerializeField ] Pool_UIPopUpText pool_ui_popUpText;
 
   [ Title( "Components" ) ]
     [ SerializeField ] Rigidbody _rigidbody;
@@ -160,7 +161,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
     {
 		event_particle_spawn.Raise( "piggy_shatter", transform.position, null, GameSettings.Instance.piggy_pfx_shatter_size );
 
-		notif_currency.SharedValue += data_current.curreny_range.ReturnRandom();
+		var currencyGain = data_current.curreny_range.ReturnRandom();
+		notif_currency.SharedValue += currencyGain;
 		notif_currency.Save();
 
 		system_merger.RemovePiggyBank( this );
@@ -168,6 +170,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 		pool_piggyBank.ReturnEntity( this );
 		pool_piggyBank_scatter.GetEntity().Execute( transform, data_current );
+
+		pool_ui_popUpText.GetEntity().Spawn( transform.position + Vector3.up * GameSettings.Instance.piggy_popUpUI_offset_height, "+" + currencyGain.ToString( "F" ), GameSettings.Instance.piggy_popUpUI_size, GameSettings.Instance.piggy_popUpUI_color );
 	}
 
     void OnDamaged()

@@ -198,6 +198,7 @@ MonoBehaviour:
   notif_piggyBank_count: {fileID: 11400000, guid: bd40abded4895a54cb134553a5ee8626, type: 2}
   event_haptic: {fileID: 11400000, guid: a5edacec3496d4c5f9e94958dd3b9adf, type: 2}
   event_particle_spawn: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
+  pool_ui_popUpText: {fileID: 11400000, guid: eaaacbd90b1464ad2b2a3a962a8a84b2, type: 2}
   _rigidbody: {fileID: 4624398986004652736}
   _collider: {fileID: 6435924335966336314}
   mesh_filter: {fileID: 3214606123515943836}
