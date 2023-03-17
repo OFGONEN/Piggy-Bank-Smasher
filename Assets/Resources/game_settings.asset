@@ -35,7 +35,7 @@ MonoBehaviour:
   piggy_pfx_shatter_size: 1.35
   piggy_pfx_damage_size: 3
   piggy_popUpUI_size: 5
-  piggy_popUpUI_color: {r: 0.8808007, g: 1, b: 0, a: 1}
+  piggy_popUpUI_color: {r: 1, g: 1, b: 1, a: 1}
   piggy_popUpUI_offset_height: 2
   cursor_movement_speed: 10
   selection_layer: 0
