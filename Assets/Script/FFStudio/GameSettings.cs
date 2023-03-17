@@ -33,6 +33,11 @@ namespace FFStudio
 		[ LabelText( "Shatter Size" ) ] public float piggy_pfx_shatter_size;
 		[ LabelText( "Damage Size" ) ] public float piggy_pfx_damage_size;
 
+    [ Title( "Piggy Bank PopUp Text" ) ]
+		[ LabelText( "Text Size" ) ] public float piggy_popUpUI_size;
+		[ LabelText( "Text Color" ) ] public Color piggy_popUpUI_color;
+		[ LabelText( "Text Height Offset" ) ] public float piggy_popUpUI_offset_height;
+
     [ Title( "Cursor" ) ]
 		[ LabelText( "Movement Speed" ) ] public float cursor_movement_speed;
 
