@@ -39,7 +39,7 @@ public class UICurrenyText : MonoBehaviour
         if( notif_currency.sharedValue >= maxValue )
 			_textRenderer.text = MathExtensions.FormatBigNumberAANotation( notif_currency.sharedValue );
         else
-			_textRenderer.text = notif_currency.sharedValue.ToString();
+			_textRenderer.text = notif_currency.sharedValue.ToString( "F" );
 	}
 #endregion
 
