@@ -22,6 +22,12 @@ MonoBehaviour:
     vibrato: 10
     elasticity: 1
     ease: 12
+  piggy_damage_punchScale:
+    strength: {x: 0.1, y: 0.1, z: 0.1}
+    duration: 0.2
+    vibrato: 10
+    elasticity: 1
+    ease: 12
   piggy_merge_jump_duration: 0.25
   piggy_merge_jump_power: 1
   piggy_merge_jump_ease: 12
@@ -38,7 +44,7 @@ MonoBehaviour:
   piggy_popUpUI_color: {r: 1, g: 1, b: 1, a: 1}
   piggy_popUpUI_offset_height: 2
   cursor_movement_speed: 10
-  selection_layer: 0
+  selection_layer: 30
   selection_distance: 100
   camera_follow_speed_depth: 2.8
   game_level_count_max: 1

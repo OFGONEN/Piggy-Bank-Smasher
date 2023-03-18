@@ -18,6 +18,7 @@ namespace FFStudio
 
     [ Title( "Piggy Bank" ) ]
 		[ LabelText( "Spawn Punch Scale" ) ] public PunchScaleTween piggy_spawn_punchScale;
+		[ LabelText( "Spawn Punch Scale" ) ] public PunchScaleTween piggy_damage_punchScale;
 		[ LabelText( "Merge Jump Duration" ) ] public float piggy_merge_jump_duration;
 		[ LabelText( "Merge Jump Power" ) ] public float piggy_merge_jump_power;
 		[ LabelText( "Merge Jump Ease" ) ] public Ease piggy_merge_jump_ease;
