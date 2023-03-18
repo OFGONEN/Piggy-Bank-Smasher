@@ -64,6 +64,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 		_rigidbody.isKinematic = false;
 		_rigidbody.useGravity  = true;
+		_rigidbody.velocity    = Vector3.zero;
 		_collider.enabled      = true;
 
 		gameObject.SetActive( true );
@@ -150,6 +151,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
 		_rigidbody.isKinematic = false;
 		_rigidbody.useGravity  = true;
+		_rigidbody.velocity    = Vector3.zero;
 		_collider.enabled      = true;
 	}
 
