@@ -72,6 +72,7 @@ public class PiggyBank : MonoBehaviour, IInteractable
     public void OnInteract()
     {
 		event_haptic.Raise( 0 );
+		event_particle_spawn.Raise( "piggy_damage", transform.position, null, GameSettings.Instance.piggy_pfx_damage_size );
 
 		health_current -= system_economy.Damage;
         
@@ -176,6 +177,8 @@ public class PiggyBank : MonoBehaviour, IInteractable
 
     void OnDamaged()
     {
+		recycledTween.Recycle( GameSettings.Instance.piggy_damage_punchScale.CreateTween( mesh_renderer.transform ) );
+
 		var ratio = Mathf.InverseLerp( data_current.health, 0, health_current );
 		_colorSetter.LerpAllColors( ratio, GameSettings.Instance.piggy_damaged_color );
 	}
