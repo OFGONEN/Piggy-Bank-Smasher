@@ -58,9 +58,10 @@ public class SelectionSystem : ScriptableObject
 
 		//Info: Since the environment surface always cover the whole screen this raycast will hit it %100
 		RaycastHit hitInfo;
-		Physics.Raycast( worldPointNear, direction, out hitInfo, GameSettings.Instance.selection_distance, layerMask );
+		var isHit = Physics.Raycast( worldPointNear, direction, out hitInfo, GameSettings.Instance.selection_distance, layerMask );
 
-		event_selection_point.Raise( hitInfo.point );
+		if( isHit )
+			( hitInfo.collider.GetComponent< ComponentHost >().HostComponent as PiggyBank ).OnInteract();
 	}
 #endregion
 
