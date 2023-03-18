@@ -145,7 +145,7 @@ MonoBehaviour:
     - rid: 248523905948975104
       type: {class: Vector2GameEventResponse, ns: FFStudio, asm: Assembly-CSharp}
       data:
-        isEnabled: 1
+        isEnabled: 0
         isDelayed: 0
         delayDuration: 0
         gameEvent: {fileID: 11400000, guid: a5ce032fe3fdc429bacf4c9428ee7eb0, type: 2}
