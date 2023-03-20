@@ -27,7 +27,7 @@ MonoBehaviour:
     unlock_cost: 60
     unlock_formated: 0
     spawn_count_max: 60
-    unlock_sprite: {fileID: 21300000, guid: 6743d227f68cbaa42b2ffcf19d0c4518, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 9214888aa3b34bd4daf2a4412a419ba4, type: 3}
     spawn_data_array:
     - percentage: 25
       level: 2
@@ -39,7 +39,7 @@ MonoBehaviour:
     unlock_cost: 600
     unlock_formated: 0
     spawn_count_max: 65
-    unlock_sprite: {fileID: 21300000, guid: 4f970aa36fe8ec140af6a142845a894d, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 6743d227f68cbaa42b2ffcf19d0c4518, type: 3}
     spawn_data_array:
     - percentage: 8
       level: 3
@@ -54,7 +54,7 @@ MonoBehaviour:
     unlock_cost: 6000
     unlock_formated: 0
     spawn_count_max: 70
-    unlock_sprite: {fileID: 21300000, guid: 188c89ae8088f0c48a7c1e79d904d0dc, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 4f970aa36fe8ec140af6a142845a894d, type: 3}
     spawn_data_array:
     - percentage: 6
       level: 4
@@ -72,7 +72,7 @@ MonoBehaviour:
     unlock_cost: 53000
     unlock_formated: 0
     spawn_count_max: 75
-    unlock_sprite: {fileID: 21300000, guid: 3586aa968d2ba41488956ddddd5e5f4a, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 188c89ae8088f0c48a7c1e79d904d0dc, type: 3}
     spawn_data_array:
     - percentage: 5
       level: 5
@@ -93,7 +93,7 @@ MonoBehaviour:
     unlock_cost: 380000
     unlock_formated: 0
     spawn_count_max: 80
-    unlock_sprite: {fileID: 21300000, guid: 162696f0504d98e4f8fecb770b8be412, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 3586aa968d2ba41488956ddddd5e5f4a, type: 3}
     spawn_data_array:
     - percentage: 5
       level: 6
@@ -114,7 +114,7 @@ MonoBehaviour:
     unlock_cost: 2400000
     unlock_formated: 0
     spawn_count_max: 85
-    unlock_sprite: {fileID: 21300000, guid: ed42840a8e2ab5549a40891156e7573b, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 162696f0504d98e4f8fecb770b8be412, type: 3}
     spawn_data_array:
     - percentage: 5
       level: 7
@@ -135,7 +135,7 @@ MonoBehaviour:
     unlock_cost: 15000000
     unlock_formated: 1
     spawn_count_max: 90
-    unlock_sprite: {fileID: 21300000, guid: 16b61675c4c06eb44ab4ac6eba47fd65, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: ed42840a8e2ab5549a40891156e7573b, type: 3}
     spawn_data_array:
     - percentage: 5
       level: 8
@@ -156,7 +156,7 @@ MonoBehaviour:
     unlock_cost: 94000000
     unlock_formated: 1
     spawn_count_max: 95
-    unlock_sprite: {fileID: 21300000, guid: b66a869ff5d179547a958b3d021aaf9f, type: 3}
+    unlock_sprite: {fileID: 21300000, guid: 16b61675c4c06eb44ab4ac6eba47fd65, type: 3}
     spawn_data_array:
     - percentage: 5
       level: 9
