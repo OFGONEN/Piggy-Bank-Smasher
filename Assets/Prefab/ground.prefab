@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 1877882290359998321, guid: 38ffafc1a07c45048a26f07ff40e5ec3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3495c1f623c131348868969c39dfcee2, type: 2}
+      objectReference: {fileID: 2100000, guid: a09172703d2d22149b9bf45bf5a5b615, type: 2}
     - target: {fileID: 2521906820082783590, guid: 38ffafc1a07c45048a26f07ff40e5ec3, type: 3}
       propertyPath: m_Name
       value: gfx_ground
