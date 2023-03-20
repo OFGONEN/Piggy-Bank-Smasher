@@ -31,7 +31,7 @@ namespace FFStudio
         Big
     }
 
-	public enum MovementMode { Local, World }
+	public enum TweenSpace { Local, World }
     
     public enum SequenceElementType
     {

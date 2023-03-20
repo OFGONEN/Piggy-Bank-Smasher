@@ -22,7 +22,7 @@ namespace FFStudio
 		[ InfoBox( "Duration is VELOCITY (units/seconds).", "speedBased" ) ]
 #endif
 		[ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public float duration;
-		[ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public MovementMode movementMode;
+		[ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public TweenSpace space;
 #endregion
 
 #region Properties
@@ -38,7 +38,7 @@ namespace FFStudio
 #region API
 		public override Tween CreateTween( bool isReversed = false )
 		{
-			if( movementMode == MovementMode.Local )
+			if( space == TweenSpace.Local )
 				recycledTween.Recycle( transform.DOLocalMove( isReversed ? -endValue : endValue, duration ),
 									   unityEvent_onCompleteEvent.Invoke );
 			else

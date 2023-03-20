@@ -22,10 +22,12 @@ namespace FFStudio
 #region API
 		public void LoadCurrentLevelData()
 		{
-			if( currentLevel_Real > GameSettings.Instance.maxLevelCount )
-				currentLevel_Real = Random.Range( 1, GameSettings.Instance.maxLevelCount );
+			if( currentLevel_Real > GameSettings.Instance.game_level_count_max )
+				currentLevel_Real = Random.Range( 
+                    GameSettings.Instance.game_level_count_min,
+                    GameSettings.Instance.game_level_count_max );
 
-			levelData = Resources.Load< LevelData >( "level_data_" + currentLevel_Real );
+			levelData = GameSettings.Instance.game_level_data_array[ currentLevel_Real - 1 ];
 		}
 #endregion
 

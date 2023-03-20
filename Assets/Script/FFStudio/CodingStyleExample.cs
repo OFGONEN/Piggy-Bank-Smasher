@@ -106,7 +106,7 @@ namespace FFStudio /* Project-specific code does not have to be placed inside a 
                                             .ToArray();
 			}
 
-			delegate_update = ExtensionMethods.EmptyMethod;
+			delegate_update = Extensions.EmptyMethod;
 
 		} // Info: Notice the line below this: There should always be an empty line between subsequent method definitions.
 

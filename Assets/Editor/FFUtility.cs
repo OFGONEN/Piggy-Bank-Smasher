@@ -36,7 +36,7 @@ namespace FFEditor
 		[ MenuItem( "FFStudios/Set LevelDatas" ) ]
 		public static void SetLevelDatas()
 		{
-			var maxLevelCount = GameSettings.Instance.maxLevelCount;
+			var maxLevelCount = GameSettings.Instance.game_level_count_max;
 
 			for( var i = 1; i <= maxLevelCount; i++ )
 			{
@@ -51,7 +51,7 @@ namespace FFEditor
 		[ MenuItem( "FFStudios/Update LevelData" ) ]
 		public static void UpdateLevelData()
 		{
-			var maxLevelCount = GameSettings.Instance.maxLevelCount;
+			var maxLevelCount = GameSettings.Instance.game_level_count_max;
 
 			for( var i = 1; i <= maxLevelCount; i++ )
 			{
@@ -326,20 +326,18 @@ namespace FFEditor
 		[ MenuItem( "FFStudios/Set Max Level Count for Game Settings" ) ]
 		public static void SetMaxLevelForGameSettings()
 		{
-			string[] guids = AssetDatabase.FindAssets( "level_data_ t:levelData", new[] { "Assets/Resources" } );
-
 			if( gameSettings == null )
 			{
 				var path_GameSettings = "Assets/Resources/game_settings.asset";
 				gameSettings = AssetDatabase.LoadAssetAtPath( path_GameSettings, typeof( GameSettings ) ) as GameSettings;
 			}
 
-			gameSettings.maxLevelCount = guids.Length;
+			gameSettings.game_level_count_max = gameSettings.game_level_data_array.Length;
 
 			EditorUtility.SetDirty( gameSettings );
 			AssetDatabase.SaveAssets();
 		}
-		
+
 		[ MenuItem( "FFStudios/Bake Build String" ) ]
 		public static void BakeBuildString()
 		{

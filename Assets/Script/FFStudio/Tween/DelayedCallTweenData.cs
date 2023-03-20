@@ -22,7 +22,7 @@ namespace FFStudio
 #region API
 		public override Tween CreateTween( bool isReversed = false )
 		{
-			recycledTween.Recycle( DOVirtual.DelayedCall( duration, ExtensionMethods.EmptyMethod ), unityEvent_onCompleteEvent.Invoke );
+			recycledTween.Recycle( DOVirtual.DelayedCall( duration, Extensions.EmptyMethod ), unityEvent_onCompleteEvent.Invoke );
 
 #if UNITY_EDITOR
 			recycledTween.Tween.SetId( "_ff_delayedCall_tween___" + description );

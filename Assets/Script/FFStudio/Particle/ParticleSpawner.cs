@@ -23,7 +23,8 @@ namespace FFStudio
 			var data = particleDatas[ index ];
 
 			Transform parent = data.parent ? transform : null;
-			data.particle_event.Raise( data.alias, transform.position + data.offset, parent, data.size );
+			var offset = data.keepParentRotation ? transform.TransformVector( data.offset ) : data.offset;
+			data.particle_event.Raise( data.alias, transform.position + offset, parent, data.size, data.keepParentRotation );
 		}
 #endregion
 

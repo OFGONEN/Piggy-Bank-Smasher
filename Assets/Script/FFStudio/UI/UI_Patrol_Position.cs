@@ -48,6 +48,16 @@ namespace FFStudio
 
 			return recycledTween.Tween;
         }
+
+		public void TeleportToTarget( Vector3 targetPosition )
+		{
+			ui_rectTransform.position = targetPosition;
+		}
+
+		public void TeleportToStart( Vector3 startPosition )
+		{
+			ui_rectTransform.position = startPosition;
+		}
 #endregion
 
 #region Implementation

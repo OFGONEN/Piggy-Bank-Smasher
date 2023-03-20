@@ -22,6 +22,12 @@ namespace FFStudio
 #endregion
 
 #region API
+        public virtual void SetData( DataType value )
+        {
+            runTimeData = value;
+			onUpdateEvent.Invoke( runTimeData );
+		}
+
 		public abstract void OffsetData( DataType value );
 		public abstract void CompareData( DataType value );
 #endregion

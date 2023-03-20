@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1188dda646b394cb5a2b08d1cc151f, type: 3}
+  m_Name: shared_piggyBank_data_5
+  m_EditorClassIdentifier: 
+  level: 5
+  health: 16
+  curreny_range: {x: 6152, y: 18457}
+  merge_count: 6
+  next_data: {fileID: 11400000, guid: 283eefa181f36144eaf707476e4a72c6, type: 2}
+  mesh: {fileID: -8232519703238884331, guid: 035df8934e9fd794a9bc86d671b629f2, type: 3}
+  material_array:
+  - {fileID: 2100000, guid: 1a19f84d03cd92243bf41939b35f1358, type: 2}
+  scatter_data:
+    mesh_array:
+    - {fileID: -4122916103799640655, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    - {fileID: 697903988925253736, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    - {fileID: -6017172911788317743, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    - {fileID: 1160288528575290666, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    - {fileID: 5673084798034043110, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    - {fileID: -8094190371653704284, guid: 3c3a1c53596d8444c84f558741722528, type: 3}
+    material: {fileID: 2100000, guid: 1a19f84d03cd92243bf41939b35f1358, type: 2}

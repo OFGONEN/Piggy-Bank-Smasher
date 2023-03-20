@@ -22,7 +22,7 @@ namespace FFStudio
 #region Unity API
         void Awake()
         {
-			updateMethod = ExtensionMethods.EmptyMethod;
+			updateMethod = Extensions.EmptyMethod;
 		}
 
 		void OnEnable()
@@ -33,7 +33,7 @@ namespace FFStudio
 
 		void OnDisable()
 		{
-			updateMethod = ExtensionMethods.EmptyMethod;
+			updateMethod = Extensions.EmptyMethod;
 		}
 
         void Update()

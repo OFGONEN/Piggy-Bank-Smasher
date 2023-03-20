@@ -45,7 +45,7 @@ public class UIParticle : MonoBehaviour
 		ui_text.fontSize = font_size_original;
 
 		var screenPosition      = ( notif_camera_transform.SharedValue as Transform ).GetComponent< Camera >().WorldToScreenPoint( worldPosition );
-        var spawnTargetPosition = screenPosition + Random.insideUnitCircle.ConvertV3() * GameSettings.Instance.uiParticle_spawn_width_percentage * Screen.width / 100f;
+        var spawnTargetPosition = screenPosition + Random.insideUnitCircle.ConvertToVector3() * GameSettings.Instance.uiParticle_spawn_width_percentage * Screen.width / 100f;
         var targetPosition      = ( notif_target_transform.SharedValue as RectTransform ).position;
 
 		transform.position = screenPosition;

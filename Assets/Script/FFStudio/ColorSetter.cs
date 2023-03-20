@@ -3,17 +3,16 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using System.Collections.Generic;
 
 namespace FFStudio
 {
 	public class ColorSetter : MonoBehaviour
 	{
 #region Fields
-		[ TitleGroup( "Setup" ), SerializeField ] Color color;
-
+		[ TitleGroup( "Setup" ), SerializeField ] Renderer theRenderer;
 		static int SHADER_ID_COLOR = Shader.PropertyToID( "_BaseColor" );
 
-		Renderer theRenderer;
 		MaterialPropertyBlock propertyBlock;
 #endregion
 
@@ -23,52 +22,36 @@ namespace FFStudio
 #region Unity API
 		void Awake()
 		{
-			theRenderer = GetComponent< Renderer >();
-
 			propertyBlock = new MaterialPropertyBlock();
 		}
 #endregion
 
 #region API
-		public void SetColor( Color color )
+		public void SetStartColors()
 		{
-			this.color = color;
-
-			SetColor();
+			for( var i = 0; i < theRenderer.sharedMaterials.Length; i++ )
+				SetColor( theRenderer.sharedMaterials[ i ].color, i );
 		}
 
-		[ Button ]
-		public void SetColor()
+		[ Button() ]
+		public void SetColor( Color color, int index )
+		{
+			theRenderer.GetPropertyBlock( propertyBlock, index );
+			propertyBlock.SetColor( SHADER_ID_COLOR, color );
+			theRenderer.SetPropertyBlock( propertyBlock, index );
+		}
+
+		public void SetColor( Color color )
 		{
 			theRenderer.GetPropertyBlock( propertyBlock );
 			propertyBlock.SetColor( SHADER_ID_COLOR, color );
 			theRenderer.SetPropertyBlock( propertyBlock );
 		}
 
-		public Color GetColor()
+		public void LerpAllColors( float ratio, Color target )
 		{
-			theRenderer.GetPropertyBlock( propertyBlock );
-			return propertyBlock.GetColor( SHADER_ID_COLOR );
-		}
-		
-		public void SetAlpha( float alpha )
-		{
-			theRenderer.GetPropertyBlock( propertyBlock );
-			var currentColor = theRenderer.sharedMaterial.GetColor( SHADER_ID_COLOR );
-			propertyBlock.SetColor( SHADER_ID_COLOR, currentColor.SetAlpha( alpha ) );
-			theRenderer.SetPropertyBlock( propertyBlock );
-		}
-
-		public Tweener TweenColor( Color from, Color to, float duration )
-		{
-			return DOVirtual.Float( 0, 1, duration,
-							 		( float lerpBy ) => SetColor( Color.Lerp( from, to, lerpBy ) ) );
-		}
-
-		public Tweener TweenAlpha( float from, float to, float duration )
-		{
-			return DOVirtual.Float( from, to, duration,
-							 		( float val ) => SetAlpha( val ) );
+			for( var i = 0; i < theRenderer.sharedMaterials.Length; i++ )
+				SetColor( Color.Lerp( theRenderer.sharedMaterials[ i ].color, target, ratio ), i );
 		}
 #endregion
 

@@ -26,7 +26,6 @@ namespace FFStudio
         [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), ValueDropdown( "VectorValues" ), LabelText( "Rotate Around" ) ]
             public Vector3 rotationAxisMaskVector = Vector3.right;
 
-
         IEnumerable VectorValues = new ValueDropdownList< Vector3 >()
         {
             { "X",   Vector3.right      },

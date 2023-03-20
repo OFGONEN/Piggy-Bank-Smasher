@@ -37,6 +37,7 @@ namespace FFStudio
 		{
 			particleEffectStopped( this ); // Returns this back to pool
 			transform.localScale = Vector3.one;
+			transform.localRotation = Quaternion.identity;
 		}
 
 		public virtual void InitIntoPool( ParticleEffectPool pool, ParticleEffectStopped effectStoppedDelegate )
@@ -53,7 +54,11 @@ namespace FFStudio
 			transform.localScale = particle_start_size * particleEvent.particle_spawn_size;
 
 			if( particleEvent.particle_spawn_parent != null )
+			{
 				transform.SetParent( particleEvent.particle_spawn_parent );
+				if( particleEvent.keepParentRotation )
+					transform.rotation = transform.parent.rotation;
+			}
 
 			particles.Play();
 		}

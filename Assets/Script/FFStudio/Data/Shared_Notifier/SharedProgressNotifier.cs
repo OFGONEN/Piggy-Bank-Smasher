@@ -1,4 +1,4 @@
-/* Created by and for usage of FF Studios (2021). */
+	/* Created by and for usage of FF Studios (2021). */
 
 using UnityEngine;
 using FFStudio;
@@ -8,6 +8,11 @@ public class SharedProgressNotifier : SharedFloatNotifier
 {
 #region Fields
     float numerator = 0, denominator = 100;
+#endregion
+
+#region Properties
+	public float Numerator   => numerator;
+	public float Denominator => denominator;
 #endregion
 
 #region Unity API

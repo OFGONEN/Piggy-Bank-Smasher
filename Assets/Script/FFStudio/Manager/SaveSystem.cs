@@ -27,28 +27,28 @@ namespace FFStudio
 			instance = this;
 
 			// Create folder.
-			if( Directory.Exists( ExtensionMethods.SAVE_PATH ) == false )
-				Directory.CreateDirectory( ExtensionMethods.SAVE_PATH );
+			if( Directory.Exists( Extensions.SAVE_PATH ) == false )
+				Directory.CreateDirectory( Extensions.SAVE_PATH );
 		}
 
 		public void SaveOverride_WithSharedString()
 		{
-			File.WriteAllText( ExtensionMethods.SAVE_PATH + "save.txt", save_string.sharedValue );
+			File.WriteAllText( Extensions.SAVE_PATH + "save.txt", save_string.sharedValue );
 			FFStudio.FFLogger.Log( "Savemanager: Saved Succesfully. Data saved: " + save_string.sharedValue );
 		}
 
 		public void SaveOverride( string save )
 		{
-			File.WriteAllText( ExtensionMethods.SAVE_PATH + "save.txt", save );
+			File.WriteAllText( Extensions.SAVE_PATH + "save.txt", save );
 			FFStudio.FFLogger.Log( "Savemanager: Saved Succesfully. Data saved: " + save );
 		}
 
 		public string LoadSave()
 		{
-			if( File.Exists( ExtensionMethods.SAVE_PATH + "save.txt" ) == false )
+			if( File.Exists( Extensions.SAVE_PATH + "save.txt" ) == false )
 				return null;
 
-			var json = File.ReadAllText( ExtensionMethods.SAVE_PATH + "save.txt" );
+			var json = File.ReadAllText( Extensions.SAVE_PATH + "save.txt" );
 			FFStudio.FFLogger.Log( "SaveSystem: Loaded Succesfully. Data read: " + json );
 
 			return json;
@@ -56,19 +56,22 @@ namespace FFStudio
 
 		public void LoadSave_ToSharedString()
 		{
-			if( File.Exists( ExtensionMethods.SAVE_PATH + "save.txt" ) == false )
+			if( File.Exists( Extensions.SAVE_PATH + "save.txt" ) == false )
+			{
+				save_string.SharedValue = null;
 				return;
+			}
 
-			save_string.SharedValue = File.ReadAllText( ExtensionMethods.SAVE_PATH + "save.txt" );
+			save_string.SharedValue = File.ReadAllText( Extensions.SAVE_PATH + "save.txt" );
 			FFStudio.FFLogger.Log( "SaveSystem: Loaded Succesfully. Data read: " + save_string.sharedValue );
 		}
 
 		public void DeleteSave()
 		{
-			if( File.Exists( ExtensionMethods.SAVE_PATH + "save.txt" ) )
+			if( File.Exists( Extensions.SAVE_PATH + "save.txt" ) )
 			{
 				FFStudio.FFLogger.Log( "SaveSystem: Found save file. Deleting it." );
-				File.Delete( ExtensionMethods.SAVE_PATH + "save.txt" );
+				File.Delete( Extensions.SAVE_PATH + "save.txt" );
 			}
 		}
 #endregion

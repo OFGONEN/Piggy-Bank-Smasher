@@ -93,6 +93,11 @@ namespace FFStudio
 			sharedValue = value;
 			changeEvent?.Invoke();
 		}
+		
+		public void ManuallyNotify()
+		{
+			changeEvent?.Invoke();
+		}
 
 #if UNITY_EDITOR
 		public bool IsMethodSubscribed( ChangeEvent method )

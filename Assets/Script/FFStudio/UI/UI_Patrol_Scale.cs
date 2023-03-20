@@ -50,6 +50,16 @@ namespace FFStudio
 			return recycledTween.Tween;
         }
 
+		public void TeleportToTarget( Vector3 targetScale )
+		{
+			ui_rectTransform.localScale = targetScale;
+		}
+
+		public void TeleportToStart( Vector3 startScale )
+		{
+			ui_rectTransform.localScale = startScale;
+		}
+
 		public void Subscribe_OnComplete( UnityMessage callback )
 		{
 			onComplete.Subscribe( callback );

@@ -23,12 +23,12 @@ namespace FFStudio
 #region Unity API
         void OnDisable()
         {
-			updateMethod = ExtensionMethods.EmptyMethod;
+			updateMethod = Extensions.EmptyMethod;
 		}
 
         void Awake()
         {
-            updateMethod = ExtensionMethods.EmptyMethod;
+            updateMethod = Extensions.EmptyMethod;
         }
 
         void Update()
@@ -49,7 +49,7 @@ namespace FFStudio
 
         public void LevelFinishedResponse()
         {
-            updateMethod = ExtensionMethods.EmptyMethod;
+            updateMethod = Extensions.EmptyMethod;
         }
 #endregion
 

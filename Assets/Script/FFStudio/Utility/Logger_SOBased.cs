@@ -27,12 +27,12 @@ namespace FFStudio
         
         public void Log_WithContext_Transform( string text )
         {
-            FFLogger.Log( text, target_transform );
+            FFLogger.Log( target_transform.name + ": " + text, target_transform );
         }
 
 		public void Log_WithContext_GameObject( string text )
 		{
-			FFLogger.Log( text, target_gameObject );
+			FFLogger.Log( target_gameObject.name + ": " + text, target_gameObject );
 		}
         
         public void SetTarget( Transform transform )

@@ -28,7 +28,7 @@ namespace FFStudio
 #region Unity API
 		void Awake()
 		{
-			onDrawShape = ExtensionMethods.EmptyMethod;
+			onDrawShape = Extensions.EmptyMethod;
 		}
 #endregion
 
@@ -42,7 +42,7 @@ namespace FFStudio
 		[ Button() ]
 		public void StopDrawing()
 		{
-			onDrawShape = ExtensionMethods.EmptyMethod;
+			onDrawShape = Extensions.EmptyMethod;
 		}
         
 		public override void DrawShapes( Camera cam )

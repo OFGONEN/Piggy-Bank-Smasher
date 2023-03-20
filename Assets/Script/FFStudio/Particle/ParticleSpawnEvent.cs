@@ -11,13 +11,15 @@ namespace FFStudio
 		public Vector3 particle_spawn_point;
 		public float particle_spawn_size;
 		[ HideInInspector ] public Transform particle_spawn_parent;
+		public bool keepParentRotation;
 
-		public void Raise( string alias, Vector3 position, Transform parent = null, float size = 1f )
+		public void Raise( string alias, Vector3 position, Transform parent = null, float size = 1f, bool keepParentRotation = false )
 		{
 			particle_alias        = alias;
 			particle_spawn_size   = size;
 			particle_spawn_point  = position;
 			particle_spawn_parent = parent;
+			this.keepParentRotation = keepParentRotation;
 
 			Raise();
 		}

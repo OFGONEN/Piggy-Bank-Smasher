@@ -9,8 +9,6 @@ namespace FFStudio
 {
     public class RotationTweenData : TweenData
     {
-        public enum RotationMode { Local, World }
-        
 #region Fields
     [ Title( "Rotation Tween" ) ]
 		[ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public bool useDelta = true;
@@ -25,10 +23,9 @@ namespace FFStudio
 		[ InfoBox( "Duration is ANGULAR VELOCITY (degrees/seconds).", "speedBased" ) ]
 #endif
         [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), Min( 0 ) ] public float duration;
-        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public RotationMode rotationMode;
+        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public TweenSpace space;
         [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), ValueDropdown( "VectorValues" ), LabelText( "Rotate Around" ) ]
             public Vector3 rotationAxisMaskVector = Vector3.right;
-
 
         IEnumerable VectorValues = new ValueDropdownList< Vector3 >()
         {
@@ -51,7 +48,7 @@ namespace FFStudio
 #region API
         public override Tween CreateTween( bool isReversed = false )
         {
-			if( rotationMode == RotationMode.Local )
+			if( space == TweenSpace.Local )
 				recycledTween.Recycle( transform.DOLocalRotate( rotationAxisMaskVector * endValue, duration, useDelta ? RotateMode.LocalAxisAdd : RotateMode.Fast ),
                                        unityEvent_onCompleteEvent.Invoke );
 			else
