@@ -126,5 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227cd4c92a59b224d9f99d9e97bf6358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools_pfx: []
+  pools_pfx:
+  - {fileID: 11400000, guid: a60db4e2ee3de4b3a8bfc49c72d11d51, type: 2}
+  - {fileID: 11400000, guid: 95330201489a24cad9d789ed1f198385, type: 2}
+  - {fileID: 11400000, guid: a96343b48118b474d8138cd0edd07b66, type: 2}
   pools_pfx_random: []

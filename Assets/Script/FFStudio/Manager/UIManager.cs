@@ -26,11 +26,17 @@ namespace FFStudio
         public Image foreGroundImage;
         public RectTransform tutorialObjects;
 
+    [ Title( "Tutorial" ) ]
+        public Image image_tutorial;
+        public Sprite[] tutorial_image_array;
+
     [ Title( "Fired Events" ) ]
         public GameEvent levelRevealedEvent;
         public GameEvent loadNewLevelEvent;
         public GameEvent resetLevelEvent;
         public ElephantLevelEvent elephantLevelEvent;
+
+        int tutorial_index;
 #endregion
 
 #region Unity API
@@ -52,27 +58,66 @@ namespace FFStudio
 
         private void Awake()
         {
-            levelLoadedResponse.response   = InitialLevelLoad;
+            levelLoadedResponse.response   = OnInitialLevelLoad;
             levelFailResponse.response     = LevelFailResponse;
             levelCompleteResponse.response = LevelCompleteResponse;
             tapInputListener.response      = Extensions.EmptyMethod;
 
 			level_information_text.text = "TAP TO START";
         }
-#endregion
+		#endregion
 
 #region Implementation
+		private void OnInitialLevelLoad()
+		{
+			var tutorial = PlayerPrefsUtility.Instance.GetInt( Extensions.Key_Tutorial, 0 ) == 0;
+
+			if( tutorial )
+				OnTutorialInitialLevelLoad();
+			else
+				InitialLevelLoad();
+
+		}
+
+		private void OnTutorialInitialLevelLoad()
+		{
+			tutorialObjects.gameObject.SetActive( true );
+
+			var sequence = DOTween.Sequence()
+								.Append( level_loadingBar_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
+								.Append( loadingScreenImage.DOFade( 0, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
+								.AppendCallback( () => tapInputListener.response = OnTutorialNext );
+
+			level_count_text.text = "LEVEL " + CurrentLevelData.Instance.currentLevel_Shown;
+
+			levelLoadedResponse.response = NewLevelLoaded;
+		}
+
         private void InitialLevelLoad()
         {
 			var sequence = DOTween.Sequence()
 								.Append( level_loadingBar_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
 								.Append( loadingScreenImage.DOFade( 0, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
-								.AppendCallback( () => tapInputListener.response = StartLevel );
+								.AppendCallback( StartLevel );
 
 			level_count_text.text = "LEVEL " + CurrentLevelData.Instance.currentLevel_Shown;
 
             levelLoadedResponse.response = NewLevelLoaded;
         }
+
+		private void OnTutorialNext()
+		{
+			if( tutorial_index >= tutorial_image_array.Length )
+			{
+				StartLevel();
+				PlayerPrefsUtility.Instance.SetInt( Extensions.Key_Tutorial, 1 );
+			}
+			else
+			{
+				image_tutorial.sprite = tutorial_image_array[ tutorial_index ];
+				tutorial_index++;
+			}
+		}
 
         private void NewLevelLoaded()
         {
@@ -87,7 +132,7 @@ namespace FFStudio
 			sequence.Append( foreGroundImage.DOFade( 0.0f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
 					// .Append( tween ) // TODO: UIElements tween.
 					.Append( level_information_text_Scale.DoScale_Start( GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
-					.AppendCallback( () => tapInputListener.response = StartLevel );
+					.AppendCallback( StartLevel );
         }
 
         private void LevelCompleteResponse()

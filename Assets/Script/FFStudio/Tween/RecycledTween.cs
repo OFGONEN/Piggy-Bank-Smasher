@@ -66,6 +66,14 @@ namespace FFStudio
 			tween?.Complete();
 			tween = tween.KillProper();
 		}
+
+		public float GetElapsedPercentageSafe()
+		{
+			if( tween != null )
+				return tween.ElapsedPercentage();
+
+			return 0;
+		}
 #endregion
 
 #region Implementation

@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e6b6b371e9b6a4d8856f1dc5a42474, type: 3}
+  m_Name: system_economy
+  m_EditorClassIdentifier: 
+  notif_currency: {fileID: 11400000, guid: d4c5c989639186846af7168e8f62d606, type: 2}
+  economy_data_array:
+  - damage: 1
+    unlock_cost: 0
+    unlock_formated: 0
+    spawn_count_max: 55
+    unlock_sprite: {fileID: 21300000, guid: 9214888aa3b34bd4daf2a4412a419ba4, type: 3}
+    spawn_data_array:
+    - percentage: 100
+      level: 1
+      count_range: {x: 1, y: 1}
+  - damage: 2
+    unlock_cost: 60
+    unlock_formated: 0
+    spawn_count_max: 60
+    unlock_sprite: {fileID: 21300000, guid: 6743d227f68cbaa42b2ffcf19d0c4518, type: 3}
+    spawn_data_array:
+    - percentage: 25
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 75
+      level: 1
+      count_range: {x: 1, y: 1}
+  - damage: 4
+    unlock_cost: 600
+    unlock_formated: 0
+    spawn_count_max: 65
+    unlock_sprite: {fileID: 21300000, guid: 4f970aa36fe8ec140af6a142845a894d, type: 3}
+    spawn_data_array:
+    - percentage: 8
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 28
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 64
+      level: 1
+      count_range: {x: 1, y: 1}
+  - damage: 8
+    unlock_cost: 6000
+    unlock_formated: 0
+    spawn_count_max: 70
+    unlock_sprite: {fileID: 21300000, guid: 188c89ae8088f0c48a7c1e79d904d0dc, type: 3}
+    spawn_data_array:
+    - percentage: 6
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 16
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 46
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 32
+      level: 1
+      count_range: {x: 1, y: 1}
+  - damage: 16
+    unlock_cost: 53000
+    unlock_formated: 0
+    spawn_count_max: 75
+    unlock_sprite: {fileID: 21300000, guid: 3586aa968d2ba41488956ddddd5e5f4a, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 16
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 21
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 26
+      level: 2
+      count_range: {x: 1, y: 1}
+    - percentage: 32
+      level: 1
+      count_range: {x: 1, y: 1}
+  - damage: 32
+    unlock_cost: 380000
+    unlock_formated: 0
+    spawn_count_max: 80
+    unlock_sprite: {fileID: 21300000, guid: 162696f0504d98e4f8fecb770b8be412, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 6
+      count_range: {x: 1, y: 1}
+    - percentage: 15
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 20
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 25
+      level: 3
+      count_range: {x: 1, y: 1}
+    - percentage: 35
+      level: 2
+      count_range: {x: 1, y: 1}
+  - damage: 64
+    unlock_cost: 2400000
+    unlock_formated: 0
+    spawn_count_max: 85
+    unlock_sprite: {fileID: 21300000, guid: ed42840a8e2ab5549a40891156e7573b, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 7
+      count_range: {x: 1, y: 1}
+    - percentage: 15
+      level: 6
+      count_range: {x: 1, y: 1}
+    - percentage: 20
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 25
+      level: 4
+      count_range: {x: 1, y: 1}
+    - percentage: 35
+      level: 3
+      count_range: {x: 1, y: 1}
+  - damage: 128
+    unlock_cost: 15000000
+    unlock_formated: 1
+    spawn_count_max: 90
+    unlock_sprite: {fileID: 21300000, guid: 16b61675c4c06eb44ab4ac6eba47fd65, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 8
+      count_range: {x: 1, y: 1}
+    - percentage: 15
+      level: 7
+      count_range: {x: 1, y: 1}
+    - percentage: 20
+      level: 6
+      count_range: {x: 1, y: 1}
+    - percentage: 25
+      level: 5
+      count_range: {x: 1, y: 1}
+    - percentage: 35
+      level: 4
+      count_range: {x: 1, y: 1}
+  - damage: 256
+    unlock_cost: 94000000
+    unlock_formated: 1
+    spawn_count_max: 95
+    unlock_sprite: {fileID: 21300000, guid: b66a869ff5d179547a958b3d021aaf9f, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 9
+      count_range: {x: 1, y: 1}
+    - percentage: 15
+      level: 8
+      count_range: {x: 1, y: 1}
+    - percentage: 20
+      level: 7
+      count_range: {x: 1, y: 1}
+    - percentage: 25
+      level: 6
+      count_range: {x: 1, y: 1}
+    - percentage: 35
+      level: 5
+      count_range: {x: 1, y: 1}
+  - damage: 512
+    unlock_cost: 587000000
+    unlock_formated: 1
+    spawn_count_max: 100
+    unlock_sprite: {fileID: 21300000, guid: b66a869ff5d179547a958b3d021aaf9f, type: 3}
+    spawn_data_array:
+    - percentage: 5
+      level: 10
+      count_range: {x: 1, y: 1}
+    - percentage: 15
+      level: 9
+      count_range: {x: 1, y: 1}
+    - percentage: 20
+      level: 8
+      count_range: {x: 1, y: 1}
+    - percentage: 25
+      level: 7
+      count_range: {x: 1, y: 1}
+    - percentage: 35
+      level: 6
+      count_range: {x: 1, y: 1}
